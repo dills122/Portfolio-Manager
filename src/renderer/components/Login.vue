@@ -2,14 +2,13 @@
 	<div class="login-container">
 		<div class="inner-container">
 			<div class="text-input">
- 				 <input type="text" id="email" placeholder="Email" v-model="email">
-  				<label for="email">Email</label>
+ 				<input type="text" id="email" placeholder="Email" v-model="email">
 			</div>
 			<div class="text-input">
  				<input type="password" id="password" placeholder="Password" v-model="password">
-  				<label for="password">Password</label>
+  				<router-link v-bind:to="{ name: 'forgot-pass' }">Forgot Password</router-link>
 			</div>
-			<router-link v-bind:to="{ name: 'forgot-pass' }">Forgot Password</router-link>
+			
 			<button type="submit" class="" v-on:click="signIn">Login</button>
 		</div>
 	</div>
@@ -27,11 +26,42 @@
 			flex-direction: column;
 			align-self: center;
 			height: auto;
+			padding: 2.5em;
 
 			background-color: #2C2F33;
 
-			input {
-				margin: .5em;
+			.text-input {
+				padding: .5em 0;
+			}
+
+			[type="text"],
+			[type="email"],
+				[type="password"]{
+  				color: rgba(255,255,255,.4);
+  				font-family: "proxima-nova";
+  				padding: .25rem 0 0;
+  				font-size: 1.25rem;
+  				font-weight: 400;
+  				width: 100%;
+  				border: none;
+  				border-bottom: 1px solid;
+  				background: none;
+  				transition: color .3s ease;
+			}
+			[type="text"]:focus,
+			[type="email"]:focus,
+				[type="password"]:focus{
+  				color: rgba(255,255,255,1);
+  				outline: 0;
+			}
+
+			button {
+				background-color: #FFF;
+				border: none;
+				padding: 1em;
+			}
+			button:hover {
+				background-color: 	#7289da;
 			}
 		}
 	}
@@ -40,7 +70,6 @@
 <script type="text/javascript">
 import firebase from 'firebase'
 import Router from '../router'
-
 
 	export default {
 		name: 'login',
@@ -62,6 +91,10 @@ import Router from '../router'
 						alert("Oppps failed")
 					}
 					);
+			},
+			FocusTxt: function() {
+				var lb = document.getElementById("email-lb");
+				lb.className += "raised" + " highlight";
 			}
 		}
 	}
