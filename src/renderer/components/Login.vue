@@ -1,5 +1,8 @@
 <template>
 	<div class="login-container">
+		<div class="header">
+			Portfolio Manager
+		</div>
 		<div class="inner-container">
 			<div class="text-input">
  				<input type="text" id="email" placeholder="Email" v-model="email">
@@ -8,7 +11,6 @@
  				<input type="password" id="password" placeholder="Password" v-model="password">
   				<router-link v-bind:to="{ name: 'forgot-pass' }">Forgot Password</router-link>
 			</div>
-			
 			<button type="submit" class="" v-on:click="signIn">Login</button>
 		</div>
 	</div>
@@ -20,6 +22,20 @@
 		display: flex;
 		justify-content: center;
 		height: auto;
+		width: 35%;
+		min-width: 245px;
+		font-family: 'Quicksand', sans-serif;
+		flex-direction: column;
+
+		.header {
+			display: flex;
+			align-self: flex-end;
+			font-family: 'Quicksand', sans-serif;
+			font-size: 2.15em;
+			margin: .5em auto;	
+			color: 	#7289da;
+			text-align: center;
+		}
 
 		.inner-container {
 			display: flex;
@@ -34,11 +50,18 @@
 				padding: .5em 0;
 			}
 
+			a {
+				color: #FFF;
+			}
+
+			a:hover {
+				color: #7289da;
+			}
+
 			[type="text"],
 			[type="email"],
 				[type="password"]{
   				color: rgba(255,255,255,.4);
-  				font-family: "proxima-nova";
   				padding: .25rem 0 0;
   				font-size: 1.25rem;
   				font-weight: 400;
@@ -47,6 +70,7 @@
   				border-bottom: 1px solid;
   				background: none;
   				transition: color .3s ease;
+  				font-family: 'Quicksand', sans-serif;
 			}
 			[type="text"]:focus,
 			[type="email"]:focus,
@@ -58,7 +82,12 @@
 			button {
 				background-color: #FFF;
 				border: none;
-				padding: 1em;
+				padding: .6em .5em;
+				width: 80%;
+				margin: 0 auto;
+				margin-top: .75em;
+				font-family: 'Quicksand', sans-serif;
+				font-size: 1.1em;
 			}
 			button:hover {
 				background-color: 	#7289da;
