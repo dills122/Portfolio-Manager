@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="background">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Quicksand" rel="stylesheet">
     <router-view></router-view>
   </div>
 </template>
@@ -19,7 +19,7 @@
 	}
   /* CSS */
   .background {
-  	background-color: #23272A;
+  	background-color: #292f3d;
   }
 
   #app {

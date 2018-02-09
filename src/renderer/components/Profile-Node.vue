@@ -10,13 +10,15 @@
 
 <style type="text/css" lang="scss">
 	.profile-node {
-		width: 92%;
+		width: 85%;
 		height: auto;
 		margin: .5em auto;
-		background-color: #FFF;
 
-		.header-info {
-
+		.header-area {
+			font-size: 1em;
+			font-family: 'Lato', sans-serif;
+			color: #FFF;
+			text-align:center;
 		}
 
 		.info-area {
@@ -24,7 +26,22 @@
 		}
 
 		.exit-area {
+			margin: .5em auto;
+			text-align:center;
 
+			button {
+				background-color: #FFF;
+				border: none;
+				padding: .15em .2em;
+				width: 65%;
+				margin: 0 auto;
+				font-family: 'Quicksand', sans-serif;
+				font-size: .9em;
+			}
+
+			button:hover {
+				background-color: 	#7289da;
+			}
 		}
 	}
 </style>

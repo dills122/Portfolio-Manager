@@ -9,7 +9,9 @@
 			</div>
 			<div class="text-input">
  				<input type="password" id="password" placeholder="Password" v-model="password">
+ 				<div>
   				<router-link v-bind:to="{ name: 'forgot-pass' }">Forgot Password</router-link>
+  			</div>
 			</div>
 			<button type="submit" class="" v-on:click="signIn">Login</button>
 		</div>
@@ -48,6 +50,10 @@
 
 			.text-input {
 				padding: .5em 0;
+
+				div {
+					padding-top: .25em;
+				}
 			}
 
 			a {
