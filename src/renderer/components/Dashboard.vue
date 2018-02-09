@@ -3,12 +3,11 @@
 	<div class="row">
 		<div class="left-bar">
 			<profile-node></profile-node>
-			<div style="height: 50px; width: 12px;">
-				Test
-			</div>
 		</div>
 		<div class="main-content">main</div>
-		<div class="right-bar">right</div>
+		<div class="right-bar">
+			<watch-list></watch-list>
+		</div>
 	</div>
 	<div class="footer"></div>
 	</div>
@@ -50,10 +49,12 @@
 
 <script type="text/javascript">
 	import Profile from './Profile-Node.vue'
+	import Watch from './Watch-List.vue'
   export default {
   	
     components: {
-      'profile-node': Profile
+      'profile-node': Profile,
+      'watch-list': Watch
     }   
  }   
 </script>

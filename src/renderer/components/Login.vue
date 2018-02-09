@@ -52,7 +52,7 @@
 				padding: .5em 0;
 
 				div {
-					padding-top: .25em;
+					padding-top: .3em;
 				}
 			}
 

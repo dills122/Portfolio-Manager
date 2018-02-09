@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="background">
     <link href="https://fonts.googleapis.com/css?family=Lato|Quicksand" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <router-view></router-view>
   </div>
 </template>
