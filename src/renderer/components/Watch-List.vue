@@ -29,18 +29,32 @@
 </style>
 
 <script type="text/javascript">
-	import firestore from 'firebase/firestore'
+	import db from './firestoreInit'
 	export default {
 		data() {
 			return {
 				Symbls: []
 			}
 		},
+		created() {
+			this.fetchData();
+		},
 		methods: {
 			AddWatchList() {
 				// firestore.collection('WatchList')get().then((querySnapshot) => {
 					
 				// })
+			},
+			fetchData() {
+			db.collection("Test").doc("SF").get().then(function(doc) {
+				if(doc.exists) {
+					console.log("Worked", doc.data());
+				} else {
+					console.log("Fuck it failed");
+				}
+			}).catch(function(error) {
+				console.log(error);
+			});
 			}
 		}
 	}

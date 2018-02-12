@@ -5,6 +5,7 @@ import firebase from 'firebase'
 import App from './App'
 import router from './router'
 import store from './store'
+import config from './components/firebaseConfig'
 
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
@@ -12,14 +13,7 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false
 
 var app;
-var config = {
-	apiKey: "AIzaSyC6RBr4Rnwi7DUscrpvrJ5ZGvNV50OEFLw",
-	authDomain: "stock-app-fbc76.firebaseapp.com",
-	databaseURL: "https://stock-app-fbc76.firebaseio.com",
-	projectId: "stock-app-fbc76",
-	storageBucket: "stock-app-fbc76.appspot.com",
-	messagingSenderId: "227319171546"
-};
+
 firebase.initializeApp(config)
 firebase.auth().onAuthStateChanged(function(user) {
 	if (!app) {
