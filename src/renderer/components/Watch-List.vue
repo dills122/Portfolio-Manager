@@ -22,7 +22,7 @@
 	width: 95%;
 	margin: .25em auto;
 	height: auto;
-
+	color: $test;
 }
 
 .add-btn {
