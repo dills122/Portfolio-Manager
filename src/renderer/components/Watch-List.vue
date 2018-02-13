@@ -12,7 +12,7 @@
 					{{sym}}
 				</li>
 			</ul>
-			
+
 		</div>
 	</div>
 </template>
@@ -22,22 +22,29 @@
 	width: 95%;
 	margin: .25em auto;
 	height: auto;
-	color: $test;
+	color: $font-color;
 }
 
 .add-btn {
 	display: inline-block;
-	background-color: #FFF;
+	background-color: $main-accent-color;
+	color: $font-color;
 	padding: .15em;
 	border-radius: .1em;
+
+	&:hover {
+		background-color: $minor-accent-color;
+		color: #sec-font-color;
+	}
 }
 ul {
-
+	list-style-type: none;
 }
 </style>
 
 <script type="text/javascript">
 import db from './firestoreInit'
+import firebase from 'firebase'
 export default {
 	data() {
 		return {
@@ -47,7 +54,7 @@ export default {
 	},
 	created() {
 		this.fetchData();
-		
+
 	},
 	methods: {
 		AddWatchList() {
@@ -62,14 +69,14 @@ export default {
 			});
 		},
 		fetchData() {
-			//Gets Users Watch List
-			db.collection("WatchList").doc(firebase.auth().currentUser.uid)
-			.get().then((doc) => {
-					console.log("Doc ", doc.data().WList)
-					this.Symbls = doc.data().WList;
-					this.Symbls.sort();
-				});
-		},
-	}
+		//Gets Users Watch List
+		db.collection("WatchList").doc(firebase.auth().currentUser.uid)
+		.get().then((doc) => {
+			console.log("Doc ", doc.data().WList)
+			this.Symbls = doc.data().WList;
+			this.Symbls.sort();
+		});
+	},
+}
 }
 </script>

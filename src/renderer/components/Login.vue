@@ -35,7 +35,7 @@
 			font-family: 'Quicksand', sans-serif;
 			font-size: 2.15em;
 			margin: .5em auto;	
-			color: 	#7289da;
+			color: 	$font-color;
 			text-align: center;
 		}
 
@@ -46,7 +46,7 @@
 			height: auto;
 			padding: 2.5em;
 
-			background-color: #2C2F33;
+			background-color: $secondary-color;
 
 			.text-input {
 				padding: .5em 0;
@@ -57,17 +57,17 @@
 			}
 
 			a {
-				color: #FFF;
+				color: $font-color;
 			}
 
 			a:hover {
-				color: #7289da;
+				color: $sec-font-color;
 			}
 
 			[type="text"],
 			[type="email"],
 				[type="password"]{
-  				color: rgba(255,255,255,.4);
+  				color: $font-color;
   				padding: .25rem 0 0;
   				font-size: 1.25rem;
   				font-weight: 400;
@@ -77,16 +77,24 @@
   				background: none;
   				transition: color .3s ease;
   				font-family: 'Quicksand', sans-serif;
+
+  				&::-webkit-input-placeholder {
+  					color: $font-color;
+  				}
 			}
 			[type="text"]:focus,
 			[type="email"]:focus,
 				[type="password"]:focus{
-  				color: rgba(255,255,255,1);
+  				color: $font-color;
   				outline: 0;
+
+  				&::-webkit-input-placeholder {
+  					color: $sec-font-color;
+  				}
 			}
 
 			button {
-				background-color: #FFF;
+				background-color: $main-accent-color;
 				border: none;
 				padding: .6em .5em;
 				width: 80%;
@@ -94,9 +102,11 @@
 				margin-top: .75em;
 				font-family: 'Quicksand', sans-serif;
 				font-size: 1.1em;
+				color: $font-color;
 			}
 			button:hover {
-				background-color: 	#7289da;
+				background-color: $minor-accent-color;
+				color: $sec-font-color;
 			}
 		}
 	}

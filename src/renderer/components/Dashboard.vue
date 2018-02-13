@@ -22,27 +22,26 @@
 			display: flex;
 			flex-direction: row;
 			justify-content: space-evenly;
+			background-color: $back-color;
+			
 		}
 		.left-bar {
 			display: flex;
 			flex-direction: column;
 			width: 25%;
 			min-height: 100vh;
-			background-color: #2C2F33;
 		}
 		.main-content {
 			display: flex;
 			flex-direction: column;
 			width: 50%;
 			min-height: 100vh;
-			background-color: #292f3d;
 		}
 		.right-bar {
 			display: flex;
 			flex-direction: column;
 			width: 25%;
 			min-height: 100vh;
-			background-color: #2C2F33;
 		}
 	}
 </style>

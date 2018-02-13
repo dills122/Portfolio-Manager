@@ -17,7 +17,7 @@
 		.header-area {
 			font-size: 1em;
 			font-family: 'Lato', sans-serif;
-			color: #FFF;
+			color: $font-color;
 			text-align:center;
 		}
 
@@ -30,17 +30,19 @@
 			text-align:center;
 
 			button {
-				background-color: #FFF;
+				background-color: $main-accent-color;
+				color: $font-color;
 				border: none;
 				padding: .15em .2em;
 				width: 65%;
 				margin: 0 auto;
 				font-family: 'Quicksand', sans-serif;
 				font-size: .9em;
-			}
 
-			button:hover {
-				background-color: 	#7289da;
+				&:hover {
+					background-color: $minor-accent-color;
+					color: $sec-font-color;
+				}
 			}
 		}
 	}

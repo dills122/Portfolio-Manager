@@ -12,7 +12,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
 	html, body {
 		margin: 0;
 		padding: 0;
@@ -20,7 +20,7 @@
 	}
   /* CSS */
   .background {
-  	background-color: #292f3d;
+  	background-color: $back-color;
   }
 
   #app {
