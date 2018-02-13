@@ -42,7 +42,7 @@
 			flex-direction: column;
 			width: 25%;
 			min-height: 100vh;
-			background-color: #EEE;
+			background-color: #2C2F33;
 		}
 	}
 </style>
