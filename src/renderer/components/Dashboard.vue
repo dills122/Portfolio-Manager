@@ -30,18 +30,21 @@
 			flex-direction: column;
 			width: 25%;
 			min-height: 100vh;
+			background-color: $middle-color;
 		}
 		.main-content {
 			display: flex;
 			flex-direction: column;
 			width: 50%;
 			min-height: 100vh;
+			background-color: $back-color;
 		}
 		.right-bar {
 			display: flex;
 			flex-direction: column;
 			width: 25%;
 			min-height: 100vh;
+			background-color: $middle-color;
 		}
 	}
 </style>

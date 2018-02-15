@@ -26,13 +26,13 @@
 		height: auto;
 		width: 35%;
 		min-width: 245px;
-		font-family: 'Quicksand', sans-serif;
+		font-family: $font, sans-serif;
 		flex-direction: column;
 
 		.header {
 			display: flex;
 			align-self: flex-end;
-			font-family: 'Quicksand', sans-serif;
+			font-family: $font, sans-serif;
 			font-size: 2.15em;
 			margin: .5em auto;	
 			color: 	$font-color;
@@ -76,7 +76,7 @@
   				border-bottom: 1px solid;
   				background: none;
   				transition: color .3s ease;
-  				font-family: 'Quicksand', sans-serif;
+  				font-family: $font, sans-serif;
 
   				&::-webkit-input-placeholder {
   					color: $font-color;
@@ -100,7 +100,7 @@
 				width: 80%;
 				margin: 0 auto;
 				margin-top: .75em;
-				font-family: 'Quicksand', sans-serif;
+				font-family: $font, sans-serif;
 				font-size: 1.1em;
 				color: $font-color;
 			}
