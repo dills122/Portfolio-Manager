@@ -106,7 +106,6 @@ export default {
 		//Gets Users Watch List
 		db.collection("WatchList").doc(firebase.auth().currentUser.uid)
 		.get().then((doc) => {
-			console.log("Doc ", doc.data().WList);
 			this.GetTickerVals(doc.data().WList,this.API_val);
 			//this.Symbls = doc.data().WList;
 			//this.Symbls.sort();
@@ -116,7 +115,6 @@ export default {
 
 		return new Promise((resolve, reject) =>  {
 			//Cannot access GetAPIStr and the params it needs
-			console.log(sym);
 			return fetch(this.GetAPIStr(sym, API_val))
 				.then((resp) => resp.json())
 				.then(function(data) {
@@ -149,7 +147,6 @@ export default {
 				this.Symbls.push(data);
 
 			}
-			console.log(this.Symbls);
 		});
 	},
 }

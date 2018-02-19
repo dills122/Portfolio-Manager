@@ -68,7 +68,6 @@ export default {
 			var authUsr = firebase.auth().currentUser;
 			if(authUsr) {
 				this.user = authUsr;
-				console.log(authUsr);
 				this.name = authUsr.email;
 			}
 		},
