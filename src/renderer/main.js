@@ -13,6 +13,8 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 	Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
+Vue.use(require('vue-chartist'));
+
 var app;
 
 firebase.initializeApp(config);
