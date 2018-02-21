@@ -15,9 +15,10 @@ Vue.config.productionTip = false
 
 var app;
 
+firebase.initializeApp(config);
+
 Vue.prototype.$db = db;
 
-firebase.initializeApp(config)
 firebase.auth().onAuthStateChanged(function(user) {
 	if (!app) {
 		/* eslint-disable no-new */

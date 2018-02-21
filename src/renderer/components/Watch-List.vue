@@ -93,38 +93,43 @@ export default {
 	methods: {
 		AddWatchList() {
 			var updatedArray = this.Symbls;
-			updatedArray.push(this.aStock);
-
-			db.collection("WatchList")
-			.doc(firebase.auth().currentUser.uid)
-			.set({WList: updatedArray}).then((result) => {
+		//Gets the newest value entered
+		this.getLatestClose(this.aStock, this.API_val)
+		.then((val) => {
+			const data = {
+				'symbol': this.aStock,
+				'value': val
+			}
+			updatedArray.push(data);
+		});
+		this.$db.update({id: firebase.auth().currentUser.uid}, {$set : {WList : this.ExtractSymbols(updatedArray)} }, {},
+			(err, numReplaced) => {
 				this.Symbls = updatedArray;
 				this.Symbls.sort();
 			});
-		},
-		fetchData() {
-		//Gets Users Watch List
-		db.collection("WatchList").doc(firebase.auth().currentUser.uid)
-		.get().then((doc) => {
-			this.GetTickerVals(doc.data().WList,this.API_val);
-			//this.Symbls = doc.data().WList;
-			//this.Symbls.sort();
-		});
+		this.aStock = "";
+	},
+	fetchData() {
+		this.$db.find({id: firebase.auth().currentUser.uid}, 
+			function(err, docs) {
+				console.log(err);
+			//this.GetTickerVals(doc.data().WList,this.API_val);
+		});	
 	},
 	getLatestClose(sym, API_val) {
 
 		return new Promise((resolve, reject) =>  {
-			//Cannot access GetAPIStr and the params it needs
-			return fetch(this.GetAPIStr(sym, API_val))
-				.then((resp) => resp.json())
-				.then(function(data) {
-					var days = data["Time Series (Daily)"];
-					for (var prop in days) {
-						resolve(days[prop]["4. close"]);
-						break;
-					}
-			});
+		//Cannot access GetAPIStr and the params it needs
+		return fetch(this.GetAPIStr(sym, API_val))
+		.then((resp) => resp.json())
+		.then(function(data) {
+			var days = data["Time Series (Daily)"];
+			for (var prop in days) {
+				resolve(days[prop]["4. close"]);
+				break;
+			}
 		});
+	});
 	},
 
 	GetAPIStr(SYM, API_val) {
@@ -148,6 +153,14 @@ export default {
 
 			}
 		});
+	},
+	ExtractSymbols(objArry) {
+		var returnArry = [];
+		objArry.forEach((element) => {
+			console.log(element.symbol);
+			returnArry.push(element.symbol);
+		});
+		return returnArry;
 	},
 }
 }

@@ -58,24 +58,8 @@
       'profile-node': Profile,
       'watch-list': Watch
     },
-    created() {
-    	this.testDB();
-    },
     methods: {
-    	testDB: function() {
-    		var doc = {
-    			name: "test",
-    			state: "PA",
-    			employed: false
-    		};
-    		// this.$db.insert(doc, function(error, Newdoc) {
-    		// 	console.log("Worked ", doc.name);
-    		// });
-
-    		this.$db.find({name: 'test'}, function(err, docs) {
-    			console.log("Found user ",docs);
-    		});
-    	}
+    	
     }   
  }   
 </script>
