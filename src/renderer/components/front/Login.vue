@@ -114,7 +114,7 @@
 
 <script type="text/javascript">
 import firebase from 'firebase'
-import Router from '../router'
+import Router from '../../router'
 import initialize from './initialize'
 
 export default {

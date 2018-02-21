@@ -12,7 +12,6 @@
 					{{sym.symbol}}&nbsp;&nbsp;{{sym.value}}
 				</li>
 			</ul>
-
 		</div>
 	</div>
 </template>
@@ -76,7 +75,7 @@ ul {
 </style>
 
 <script type="text/javascript">
-import db from './firestoreInit'
+import db from '../firestoreInit'
 import firebase from 'firebase'
 export default {
 	data() {
@@ -117,7 +116,6 @@ export default {
 		});	
 	},
 	getLatestClose(sym, API_val) {
-
 		return new Promise((resolve, reject) =>  {
 		//Cannot access GetAPIStr and the params it needs
 		return fetch(this.GetAPIStr(sym, API_val))
@@ -131,12 +129,10 @@ export default {
 		});
 	});
 	},
-
 	GetAPIStr(SYM, API_val) {
 		var url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + SYM + "&apikey=" + API_val;
 		return url;	
 	},
-
 	GetTickerVals(Symbols, API_val) {
 		var yestrClose = [];
 		for (var i = 0; i < Symbols.length; i++) {
@@ -150,7 +146,6 @@ export default {
 					'value': output[i]
 				}
 				this.Symbls.push(data);
-
 			}
 		});
 	},
