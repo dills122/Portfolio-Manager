@@ -10,7 +10,6 @@
 
 <script type="text/javascript">
 import firebase from 'firebase'
-import Chartist from 'Chartist'
 export default {
 	data() {
 		return {
@@ -84,7 +83,7 @@ return fetch(this.GetAPIStr(sym, API_val))
 				Arry = null;
 				console.log("Symbols",Symbols);
 				console.log("Chart Data", this.chartData);
-				new Chartist.Line(this.$el, this.chartData, this.chartOptions);
+				//new Chartist.Line(this.$el, this.chartData, this.chartOptions);
 			});
 		},
 	}
