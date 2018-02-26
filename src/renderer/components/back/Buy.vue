@@ -16,15 +16,10 @@ import {getCloseVals} from '../retrieveStockInfo'
 			}
 		},
 		created() {
-			this.getStock();
+			
 		},
 		methods: {
-			getStock() {
-				getCloseVals('MSFT',2, 1)
-				.then((val) => {
-					console.log(val);
-				});
-			}
+
 		}
 	}
 </script>

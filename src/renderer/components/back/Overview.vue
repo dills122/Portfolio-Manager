@@ -16,6 +16,9 @@
 <script type="text/javascript">
 import firebase from 'firebase'
 import Overview from './OverviewLine.js'
+import {getCloseVals} from '../retrieveStockInfo'
+import {getRandomColor} from '../global'
+
 export default {
 	data() {
 		return {
@@ -35,7 +38,7 @@ export default {
 		fetchData() {
 			this.getLabels().then((val) => {
 				//val == Watch List Symbols
-				this.GetTickerVals(val, "E67ZBHJYSU0K28PD");
+				this.GetTickerVals(val, 7);
 			});
 		},
 		getLabels() {
@@ -49,59 +52,46 @@ export default {
 				});
 			});
 		},
-		getLatestClose(sym, API_val) {
-			return new Promise((resolve, reject) =>  {
-//Cannot access GetAPIStr and the params it needs
-return fetch(this.GetAPIStr(sym, API_val))
-.then((resp) => resp.json())
-.then(function(data) {
-	var days = data["Time Series (Daily)"];
-	var maxVal = 7;
-	var lastSeven = [];
-	for (var prop in days) {
-		maxVal--;
-		if(maxVal == 0) {
-			break;
-		}
-		lastSeven.push(days[prop]["4. close"]);
-		
-	}
-	resolve(lastSeven);
-});
-});
-		},
-		GetAPIStr(SYM, API_val) {
-			var url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + SYM + "&apikey=" + API_val;
-			return url;	
-		},
-		GetTickerVals(Symbols, API_val) {
+		GetTickerVals(Symbols, days) {
 			var yestrClose = [];
 			for (var i = 0; i < Symbols.length; i++) {
-				yestrClose.push(this.getLatestClose(Symbols[i],API_val));
+				yestrClose.push(getCloseVals(Symbols[i], days));
 			}
 			return Promise.all(yestrClose).then((output) => {
 				var Arry = [];
-
+				var labels = [];
 				for(var i = 0; i < output.length; i++) {
-					var temp = output[i];
-					temp.reverse();
+					
 					const data = {
 						label: Symbols[i],
-						data: temp
+						data: this.getCloseValues(output[i]),
+						borderColor: getRandomColor(),
+						fill: false
 					}
 					Arry.push(data);
 				}
 
 				this.datacollection = {
-					labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"],
+					labels: this.getDates(output[0]),
 					datasets: Arry
 				}
-
 				Arry = null;
-				console.log("Symbols",Symbols);
-				console.log("Chart Data", this.chartData);
-				//new Chartist.Line(this.$el, this.chartData, this.chartOptions);
+
 			});
+		},
+		getCloseValues(objs) {
+			var closeArry = [];
+			objs.forEach(function(element) {
+				closeArry.push(element.close);
+			});
+			return closeArry;
+		},
+		getDates(objs) {
+			var arry = [];
+			objs.forEach(function(element) {
+				arry.push(element.date);
+			});
+			return arry;
 		},
 		avgPrice(vals) {
 			let sum = vals.reduce((previous, current) => current += previous);

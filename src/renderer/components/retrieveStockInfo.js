@@ -8,7 +8,8 @@ function getCloseVals(sym, days) {
 		fetch(GetAPIStr(sym))
 		.then((resp) => resp.json())
 		.then(function(data) {
-			var Arry = data.slice(0,days);
+			data = data.reverse();
+			var Arry = data.slice(0, days);
 			//Returns full stock objects in an array of the specified length
 			resolve(Arry);
 		});

@@ -7,6 +7,7 @@
 		</div>
 		<div class="main-content pure-u-3-5">
 			<overview></overview>
+			<stock></stock>
 		</div>
 		<div class="right-bar pure-u-1-5">
 			<watch-list></watch-list>
@@ -41,6 +42,7 @@
 	import Watch from './Watch-List.vue'
 	import Overview from './Overview.vue'
 	import Buy from './Buy.vue'
+	import StockOverview from './StockOverview.vue'
   export default {
   	data() {
   		return {
@@ -52,7 +54,8 @@
       'profile-node': Profile,
       'watch-list': Watch,
       'overview': Overview,
-      'buy-stock': Buy
+      'buy-stock': Buy,
+      'stock': StockOverview
     },
     methods: {
     	
