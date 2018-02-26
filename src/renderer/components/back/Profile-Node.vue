@@ -1,16 +1,20 @@
 <template>
-	<div class="profile-node">
+	<div class="profile-node pure-g">
+		<div class="pure-u-1">
 		<div class="header-area">{{ name }}</div>
 		<div class="info-area"></div>
 		<div class="exit-area">
-			<button v-on:click="signOut">Sign Out</button>
+			<a class="pure-button pure-button-primary" v-on:click="signOut">
+				<i class="icon ion-log-out"></i>
+			Sign Out</a>
 		</div>
+	</div>
 	</div>
 </template>
 
 <style type="text/css" lang="scss">
 	.profile-node {
-		width: 85%;
+		
 		height: auto;
 		margin: .5em auto;
 
@@ -29,15 +33,10 @@
 			margin: .5em auto;
 			text-align:center;
 
-			button {
+			.pure-button {
 				background-color: $main-accent-color;
 				color: $font-color;
-				border: none;
-				padding: .15em .2em;
-				width: 65%;
-				margin: 0 auto;
 				font-family: 'Quicksand', sans-serif;
-				font-size: .9em;
 
 				&:hover {
 					background-color: $minor-accent-color;

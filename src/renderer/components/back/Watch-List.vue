@@ -87,6 +87,7 @@ ul {
 <script type="text/javascript">
 import db from '../firestoreInit'
 import firebase from 'firebase'
+import {getCloseVals} from '../retrieveStockInfo'
 
 export default {
 	data() {
@@ -101,6 +102,7 @@ export default {
 this.fetchData();
 },
 methods: {
+	//Needs updated to use the module 
 	AddWatchList() {
 		var updatedArray = this.Symbls;
 //Gets the newest value entered
@@ -117,55 +119,39 @@ this.getLatestClose(this.aStock, this.API_val)
 },
 insertVal(updatedArray) {
 	this.$db.update({id: firebase.auth().currentUser.uid}, {$set : {WList : this.ExtractSymbols(updatedArray)} }, {},
-	(err, numReplaced) => {
-		this.Symbls = updatedArray;
-		//this.aStock = "";
-		console.log("Documents Inserted", numReplaced);
-	});
+		(err, numReplaced) => {
+			this.Symbls = updatedArray;
+	//this.aStock = "";
+	console.log("Documents Inserted", numReplaced);
+});
 },
 fetchData() {
 	this.$db.find({id: firebase.auth().currentUser.uid}, 
 		(err, docs) => {
-			console.log(err);
+			//console.log(err);
 
 			docs.forEach((element) => {
-				this.GetTickerVals(element.WList,this.API_val);
+				this.GetTickerVals(element.WList);
 			});
 		});	
 },
-getLatestClose(sym, API_val) {
-	return new Promise((resolve, reject) =>  {
-//Cannot access GetAPIStr and the params it needs
-return fetch(this.GetAPIStr(sym, API_val))
-.then((resp) => resp.json())
-.then(function(data) {
-	var days = data["Time Series (Daily)"];
-	for (var prop in days) {
-		resolve(days[prop]["4. close"]);
-		break;
-	}
-});
-});
-},
-GetAPIStr(SYM, API_val) {
-	var url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + SYM + "&apikey=" + API_val;
-	return url;	
-},
-GetTickerVals(Symbols, API_val) {
+GetTickerVals(Symbols) {
 	var yestrClose = [];
 	for (var i = 0; i < Symbols.length; i++) {
-		yestrClose.push(this.getLatestClose(Symbols[i],API_val));
+		yestrClose.push(getCloseVals(Symbols[i], 1));
 	}
 
 	return Promise.all(yestrClose).then((output) => {
+		console.log("Output", output);
 		for(var i = 0; i < output.length; i++) {
+
 			const data = {
 				'symbol': Symbols[i],
-				'value': Number(output[i]).toFixed(2)
+				'value': output[i][0].close
 			}
 			this.Symbls.push(data);
 		}
-		
+
 	});
 },
 ExtractSymbols(objArry) {

@@ -1,25 +1,34 @@
 <template>
-<div style="background-color:#FFF">
-
+	<div class="container">
+<div style="background-color:#FFF;">
+	<Overview :chart-data="datacollection"></Overview>
+</div>
 </div>
 </template>
 
 <style type="text/css" lang="scss">
-
+	.container {
+		width: 80%;
+		margin: 0 auto;
+	}
 </style>
 
 <script type="text/javascript">
 import firebase from 'firebase'
+import Overview from './OverviewLine.js'
 export default {
 	data() {
 		return {
-			chartData: null,
+			datacollection: null,
 			chartOptions: {
-
-			},
+				responsive: true
+			}
 		}
 	},
-	created() {
+	components: {
+		Overview
+	},
+	mounted() {
 		this.fetchData();
 	},
 	methods: {
@@ -72,19 +81,31 @@ return fetch(this.GetAPIStr(sym, API_val))
 			}
 			return Promise.all(yestrClose).then((output) => {
 				var Arry = [];
-				output.forEach((element) => {
-					Arry.push(element.reverse());
-				});
-				const data = {
-					labels: Symbols,
-					series: Arry
+
+				for(var i = 0; i < output.length; i++) {
+					var temp = output[i];
+					temp.reverse();
+					const data = {
+						label: Symbols[i],
+						data: temp
+					}
+					Arry.push(data);
 				}
-				this.chartData = data;
+
+				this.datacollection = {
+					labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"],
+					datasets: Arry
+				}
+
 				Arry = null;
 				console.log("Symbols",Symbols);
 				console.log("Chart Data", this.chartData);
 				//new Chartist.Line(this.$el, this.chartData, this.chartOptions);
 			});
+		},
+		avgPrice(vals) {
+			let sum = vals.reduce((previous, current) => current += previous);
+			return sum / vals.length;
 		},
 	}
 }
