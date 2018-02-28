@@ -7,7 +7,6 @@
 		</div>
 		<div class="main-content pure-u-3-5">
 			<overview></overview>
-			<stock></stock>
 		</div>
 		<div class="right-bar pure-u-1-5">
 			<watch-list></watch-list>

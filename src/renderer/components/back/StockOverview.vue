@@ -21,6 +21,7 @@
 import Overview from './OverviewLine.js'
 import {getCloseVals} from '../retrieveStockInfo'
 import {getRandomColor} from '../global'
+import firebase from 'firebase'
 
 export default {
 	data() {

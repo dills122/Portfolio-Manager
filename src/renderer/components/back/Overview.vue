@@ -45,7 +45,7 @@ export default {
 			return new Promise((resolve, reject) => {
 				return this.$db.find({id: firebase.auth().currentUser.uid}, 
 				(err, docs) => {
-					console.log(err);
+					
 					docs.forEach((element) => {
 						resolve(element.WList);
 					});

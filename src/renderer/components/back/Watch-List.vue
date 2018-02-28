@@ -9,7 +9,21 @@
 		<div class="watch-list-area">
 			<ul>
 				<li v-for="sym in Symbls">
-					<span class="w-sym">{{sym.symbol}}</span><span class="w-val">{{sym.value}}</span><div class="clear"></div>
+					<span class="w-sym">{{sym.symbol}}</span>
+					<span class="w-val">
+						<div>{{sym.value}}</div>
+						<div class="under-area">
+							<span v-if="sym.change > 0">
+								{{sym.change}} &nbsp;
+								<i class="icon ion-arrow-up-b up"></i>
+							</span>
+							<span v-else>
+								{{sym.change}} &nbsp;
+  								<i class="icon ion-arrow-down-b down"></i>
+							</span>
+						</div>
+					</span>
+					<div class="clear"></div>
 				</li>
 			</ul>
 		</div>
@@ -23,6 +37,19 @@
 	height: auto;
 	color: $font-color;
 	font-family: $font, sans-serif;
+}
+
+.under-area {
+	font-size: .65em;
+	text-align: center;
+}
+.up {
+	color: #27ae60;
+	font-size: 1.5em;
+}
+.down {
+	color: #c0392b;
+	font-size: 1.25em;
 }
 
 .add-btn {
@@ -45,7 +72,7 @@
 ul {
 	list-style-type: none;
 	padding: 2.5%;
-	font-size: 1.25em;
+	font-size: 1.05em;
 
 	.w-sym {
 		float: left;
@@ -87,81 +114,88 @@ ul {
 <script type="text/javascript">
 import db from '../firestoreInit'
 import firebase from 'firebase'
-import {getCloseVals} from '../retrieveStockInfo'
+import {getCloseVals,getRecentChange} from '../retrieveStockInfo'
 
 export default {
 	data() {
 		return {
 			Symbls: [],
-			aStock: null, 
-			API_val : "E67ZBHJYSU0K28PD"
+			aStock: null
 		}
 	},
 	created() {
-//this.InsertVals();
-this.fetchData();
-},
-methods: {
-	//Needs updated to use the module 
+		this.fetchData();
+	},
+	methods: {
 	AddWatchList() {
 		var updatedArray = this.Symbls;
-//Gets the newest value entered
-this.getLatestClose(this.aStock, this.API_val)
-.then((val) => {
-	const data = {
-		'symbol': this.aStock,
-		'value': val
-	}
-	updatedArray.push(data);
-	this.aStock = "";
-	this.insertVal(updatedArray);
-});
-},
-insertVal(updatedArray) {
-	this.$db.update({id: firebase.auth().currentUser.uid}, {$set : {WList : this.ExtractSymbols(updatedArray)} }, {},
-		(err, numReplaced) => {
+			//Gets the newest value entered
+		getCloseVals(this.aStock, 1)
+		.then((val) => {
+			console.log(val);
+			const data = {
+				'symbol': this.aStock,
+				'value': val[0].close
+			}
+			updatedArray.push(data);
+			this.aStock = "";
+			this.insertVal(updatedArray);
+		});
+	},
+	insertVal(updatedArray) {
+		this.$db.update({id: firebase.auth().currentUser.uid}, 
+			{$set : {WList : this.ExtractSymbols(updatedArray)} }, {},
+			(err, numReplaced) => {
 			this.Symbls = updatedArray;
-	//this.aStock = "";
-	console.log("Documents Inserted", numReplaced);
-});
-},
-fetchData() {
-	this.$db.find({id: firebase.auth().currentUser.uid}, 
+		});
+	},
+	fetchData() {
+		this.$db.find({id: firebase.auth().currentUser.uid}, 
 		(err, docs) => {
-			//console.log(err);
-
+		//console.log(err);
 			docs.forEach((element) => {
 				this.GetTickerVals(element.WList);
 			});
 		});	
-},
-GetTickerVals(Symbols) {
-	var yestrClose = [];
-	for (var i = 0; i < Symbols.length; i++) {
-		yestrClose.push(getCloseVals(Symbols[i], 1));
-	}
-
-	return Promise.all(yestrClose).then((output) => {
-		console.log("Output", output);
-		for(var i = 0; i < output.length; i++) {
-
-			const data = {
-				'symbol': Symbols[i],
-				'value': output[i][0].close
-			}
-			this.Symbls.push(data);
+	},
+	GetTickerVals(Symbols) {
+		var yestrClose = [];
+		for (var i = 0; i < Symbols.length; i++) {
+			yestrClose.push(getCloseVals(Symbols[i], 1));
 		}
+		return Promise.all(yestrClose).then((output) => {
+			for(var i = 0; i < output.length; i++) {
+					var temp = output[i][0].close;
+					temp = temp.toFixed(2);
+					console.log(temp);
+				const data = {
+					'symbol': Symbols[i],
+					'value': temp
+				}
+				this.Symbls.push(data);
+			}
+			this.getPrecentChange();
 
-	});
-},
-ExtractSymbols(objArry) {
-	var returnArry = [];
-	console.log
-	objArry.forEach((element) => {
-		returnArry.push(element.symbol);
-	});
-	return returnArry;
-},
+		});
+	},
+	ExtractSymbols(objArry) {
+		var returnArry = [];
+		console.log
+		objArry.forEach((element) => {
+			returnArry.push(element.symbol);
+		});
+		return returnArry;
+	},
+	getPrecentChange() {
+		this.Symbls.forEach((element) => {
+			getRecentChange(element.symbol).then((val) => {
+				element.change = val.toFixed(2);
+
+				console.log(this.Symbls);
+			});
+		});
+
+	}
 }
 }
 </script>
