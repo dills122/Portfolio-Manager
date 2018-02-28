@@ -1,8 +1,8 @@
-# stock-app
+# Portfolio Manager
 
-> A personal stock tracking app
+> An app to track your portfolio
 
-#### Build Setup
+## Build Setup
 
 ``` bash
 # install dependencies
@@ -17,6 +17,14 @@ npm run build
 
 ```
 
----
+## Build
 
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+Currently not a full working build avaliable and account creation is not avaliable yet
+
+## Built With
+
+* [electron-vue](https://github.com/SimulatedGREG/electron-vue) - Boilerplate
+* [Pure CSS](https://purecss.io/) - CSS Library
+* [Chartjs](http://www.chartjs.org/) - Charting Library
+* [NeDB](https://github.com/louischatriot/nedb) - Embedded Database
+
