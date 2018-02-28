@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import firebase from 'firebase'
+import db from './datastore'
 
 import App from './App'
 import router from './router'
@@ -12,9 +13,13 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 	Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
+
 var app;
 
-firebase.initializeApp(config)
+firebase.initializeApp(config);
+
+Vue.prototype.$db = db;
+
 firebase.auth().onAuthStateChanged(function(user) {
 	if (!app) {
 		/* eslint-disable no-new */
