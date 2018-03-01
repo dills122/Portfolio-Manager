@@ -167,35 +167,23 @@ export default {
 			for(var i = 0; i < output.length; i++) {
 					var temp = output[i][0].close;
 					temp = temp.toFixed(2);
-					console.log(temp);
+					//console.log(temp);
 				const data = {
 					'symbol': Symbols[i],
-					'value': temp
+					'value': temp,
+					'change':output[i][0].change
 				}
 				this.Symbls.push(data);
-			}
-			this.getPrecentChange();
-
+			}		
 		});
 	},
 	ExtractSymbols(objArry) {
 		var returnArry = [];
-		console.log
 		objArry.forEach((element) => {
 			returnArry.push(element.symbol);
 		});
 		return returnArry;
 	},
-	getPrecentChange() {
-		this.Symbls.forEach((element) => {
-			getRecentChange(element.symbol).then((val) => {
-				element.change = val.toFixed(2);
-
-				console.log(this.Symbls);
-			});
-		});
-
-	}
 }
 }
 </script>

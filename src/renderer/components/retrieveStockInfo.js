@@ -18,6 +18,11 @@ function getCloseVals(sym, days) {
 			var Arry = data.slice(0, days);
 			//Returns full stock objects in an array of the specified length
 			//Reverse again to get the correct order 
+			if(days == 1) {
+				getRecentChange(sym).then((perChange) => {
+					Arry[0]["change"] = perChange;
+				});
+			}
 			resolve(Arry.reverse());
 		});
 	});
@@ -33,7 +38,8 @@ function getRecentChange(sym) {
 			var open = data[0]["close"];
 			var close = data[1]["close"];
 			var val = close - open;
-			resolve((val / open) * 100);
+			val = (val/open) * 100;
+			resolve(val.toFixed(2));
 		});
 	});
 }
