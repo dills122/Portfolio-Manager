@@ -2,6 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import firebase from 'firebase'
 import db from './datastore'
+import portfolio from './portfolioDb'
 
 import App from './App'
 import router from './router'
@@ -19,6 +20,7 @@ var app;
 firebase.initializeApp(config);
 
 Vue.prototype.$db = db;
+Vue.prototype.$pldb = portfolio;
 
 firebase.auth().onAuthStateChanged(function(user) {
 	if (!app) {

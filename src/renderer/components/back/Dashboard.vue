@@ -3,7 +3,7 @@
 	<div class="pure-g">
 		<div class="left-bar pure-u-1-5">
 			<profile-node></profile-node>
-			<buy-stock></buy-stock>
+			<action-area></action-area>
 		</div>
 		<div class="main-content pure-u-3-5">
 			<overview></overview>
@@ -40,7 +40,7 @@
 	import Profile from './Profile-Node.vue'
 	import Watch from './Watch-List.vue'
 	import Overview from './Overview.vue'
-	import Buy from './Buy.vue'
+	import Action from './ActionPortfolio.vue'
 	import StockOverview from './StockOverview.vue'
   export default {
   	data() {
@@ -53,7 +53,7 @@
       'profile-node': Profile,
       'watch-list': Watch,
       'overview': Overview,
-      'buy-stock': Buy,
+      'action-area': Action,
       'stock': StockOverview
     },
     methods: {

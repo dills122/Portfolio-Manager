@@ -79,6 +79,7 @@ ul {
 	}
 	.w-val {
 		float: right;
+		text-align: right;
 	}
 }
 [type="text"]{
