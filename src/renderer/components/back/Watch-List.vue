@@ -11,7 +11,7 @@
 				<li v-for="sym in Symbls">
 					<span class="w-sym">{{sym.symbol}}</span>
 					<span class="w-val">
-						<div>{{sym.value}}</div>
+						<div>${{sym.value}}</div>
 						<div class="under-area">
 							<span v-if="sym.change > 0">
 								{{sym.change}} &nbsp;
@@ -166,17 +166,18 @@ export default {
 		}
 		return Promise.all(yestrClose).then((output) => {
 			for(var i = 0; i < output.length; i++) {
-					var temp = output[i][0].close;
-					temp = temp.toFixed(2);
 					//console.log(temp);
 				const data = {
 					'symbol': Symbols[i],
-					'value': temp,
-					'change':output[i][0].change
+					'value': this.fixNums(output[i][0].close),
+					'change':this.fixNums(output[i][0].changePercent)
 				}
 				this.Symbls.push(data);
 			}		
 		});
+	},
+	fixNums(num) {
+		return Number(num).toFixed(2);
 	},
 	ExtractSymbols(objArry) {
 		var returnArry = [];

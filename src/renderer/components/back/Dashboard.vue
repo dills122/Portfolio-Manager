@@ -2,6 +2,7 @@
 	<div class="dashboard-container">
 	<div class="pure-g">
 		<div class="left-bar pure-u-1-5">
+			<ticker></ticker>
 			<profile-node></profile-node>
 			<action-area></action-area>
 		</div>
@@ -42,6 +43,7 @@
 	import Overview from './Overview.vue'
 	import Action from './ActionPortfolio.vue'
 	import StockOverview from './StockOverview.vue'
+	import Ticker from './Ticker.vue'
   export default {
   	data() {
   		return {
@@ -54,7 +56,8 @@
       'watch-list': Watch,
       'overview': Overview,
       'action-area': Action,
-      'stock': StockOverview
+      'stock': StockOverview,
+      'ticker': Ticker
     },
     methods: {
     	

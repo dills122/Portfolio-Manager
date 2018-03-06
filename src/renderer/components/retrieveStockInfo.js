@@ -16,13 +16,6 @@ function getCloseVals(sym, days) {
 		.then(function(data) {
 			data = data.reverse();
 			var Arry = data.slice(0, days);
-			//Returns full stock objects in an array of the specified length
-			//Reverse again to get the correct order 
-			if(days == 1) {
-				getRecentChange(sym).then((perChange) => {
-					Arry[0]["change"] = perChange;
-				});
-			}
 			resolve(Arry.reverse());
 		});
 	});
