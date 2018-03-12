@@ -4,20 +4,20 @@
 
 			<div class="pure-g">
 				<div class="pure-u-1-2">
-					<input type="text" name="" id="symbolAct" placeholder="SYM">
+					<input type="text" name="" id="symbolAct" placeholder="SYM" v-model="symbol">
 				</div>
 				<div class="pure-u-1-2">
-					<input type="text" name="" id="priceAct" placeholder="Price">
+					<input type="text" name="" id="priceAct" placeholder="Price" v-model="price">
 				</div>
 			</div>
 			<div class="pure-g">
 				<div class="pure-u-1">
-					<input type="text" name="" id="quantityAct" placeholder="Quantity">
+					<input type="text" name="" id="quantityAct" placeholder="Quantity" v-model="qty">
 				</div>
 			</div>
 			<div class="pure-g top-pad">
 				<div class="pure-u-1">
-					<input type="radio" id="buyAct" value="Buy" v-model="picked" checked="checked">
+					<input type="radio" id="buyAct" value="Buy" v-model="picked">
 					<label for="buyAct">Buy</label>
 					<input type="radio" id="sellAct" value="Sell" v-model="picked">
 					<label for="sellAct">Sell</label>
@@ -86,11 +86,16 @@
 
 <script type="text/javascript">
 import {getCloseVals} from '../retrieveStockInfo'
+import {addTransaction} from '../portfolioActions'
+import firebase from 'firebase'
 
 export default {
 	data(){
 		return {
-			picked: null
+			picked: null,
+			symbol: null,
+			qty: null,
+			price: null
 		}
 	},
 	created() {
@@ -98,7 +103,24 @@ export default {
 	},
 	methods: {
 		actionEvnt() {
+			addTransaction(this.createObj()).then((output) => {
 
+			});
+		},
+		createObj() {
+			const val = {
+				'u-id': firebase.auth().currentUser.uid,
+				'symbol': this.symbol,
+				'qty': this.qty,
+				'price': this.price,
+				'date': this.constructDate()
+			}
+			return val;
+		},
+		constructDate() {
+			var d = new Date();
+			var month = parseInt(d.getMonth()) + 1;
+			return month + '/' + d.getDay() + '/' + d.getFullYear();
 		}
 	}
 }

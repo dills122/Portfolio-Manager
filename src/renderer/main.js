@@ -20,7 +20,7 @@ var app;
 firebase.initializeApp(config);
 
 Vue.prototype.$db = db;
-Vue.prototype.$pldb = portfolio;
+Vue.prototype.$pfdb = portfolio;
 
 firebase.auth().onAuthStateChanged(function(user) {
 	if (!app) {

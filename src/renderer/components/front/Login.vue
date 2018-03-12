@@ -15,6 +15,9 @@
 			</div>
 			<button type="submit" class="" v-on:click="signIn">Login</button>
 		</div>
+		<div class="new-user">
+			<router-link v-bind:to="{ name: 'new-user' }">New Here?</router-link>
+		</div>
 	</div>
 </template>
 
@@ -37,6 +40,21 @@
 		margin: .5em auto;	
 		color: 	$font-color;
 		text-align: center;
+	}
+
+	.new-user {
+		text-align: center;
+		font-family: $font, sans-serif;
+		font-size: 1.5em;
+		margin-top: .25em;
+
+		a {
+			color: 	$font-color;
+
+			&:hover {
+				color: #000;
+			}
+		}
 	}
 
 	.inner-container {
