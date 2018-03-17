@@ -2,6 +2,7 @@
 	<div class="dashboard-container">
 	<div class="pure-g">
 		<div class="left-bar pure-u-1-5">
+			<ticker></ticker>
 			<profile-node></profile-node>
 			<action-area></action-area>
 		</div>

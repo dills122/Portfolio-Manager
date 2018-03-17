@@ -1,8 +1,13 @@
 <template>
 	<div id="ticker" class="ticker">
 		<div id="inner-tick" v-bind:class="['animated',{ 'fadeOutDown' : isLeaving }, { 'fadeInDown' : isReturning }]">
-			<div class="left">{{currObj.symbol}} </div>
-			<div class="right">${{currObj.value}} </div>
+			<div v-if="currObj">
+				<div class="left">{{currObj.symbol}} </div>
+				<div class="right">${{currObj.value}} </div>
+			</div>
+			<div v-else>
+				<div>Ticker Loading</div>
+			</div>
 			<div class="clear"></div>	
 		</div>
 	</div>
@@ -105,9 +110,12 @@ export default {
 		}
 	},
 	created() {
-		this.fetchData();
-		this.currObj = this.objArry[0];
-		this.initInterval(4000);
+		this.fetchData().then((data) => {
+			if(!data) {
+				this.currObj = this.objArry[0];
+				this.initInterval(4000);
+			}
+		});
 	},
 	methods: {
 		initInterval(time) {
@@ -136,15 +144,18 @@ export default {
 			}
 		},
 		fetchData() {
+			return new Promise((resolve, reject)  => {
 				this.$db.find({id: firebase.auth().currentUser.uid}, 
 				(err, docs) => {
 					//console.log(err);
 					docs.forEach((element) => {
 						this.GetTickerVals(element.WList);
 					});
+					resolve(err);
 				});	
+			});
 		},
-	GetTickerVals(Symbols) {
+		GetTickerVals(Symbols) {
 			var yestrClose = [];
 			for (var i = 0; i < Symbols.length; i++) {
 				yestrClose.push(getCloseVals(Symbols[i], 1));
@@ -159,8 +170,6 @@ export default {
 					}
 				this.objArry.push(data);
 			}
-			console.log("All Fetched");
-			console.log(this.objArry);
 		});
 	},
 	fixNums(num) {
