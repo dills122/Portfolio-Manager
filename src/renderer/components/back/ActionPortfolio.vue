@@ -86,7 +86,7 @@
 
 <script type="text/javascript">
 import {getCloseVals} from '../retrieveStockInfo'
-import {addTransaction} from '../portfolioActions'
+import {addTransaction,retrieveTransactions} from '../portfolioActions'
 import firebase from 'firebase'
 
 export default {
@@ -99,12 +99,15 @@ export default {
 		}
 	},
 	created() {
-
+		this.picked = "Buy";
 	},
 	methods: {
 		actionEvnt() {
-			addTransaction(this.createObj()).then((output) => {
-
+			addTransaction(this.createObj(), this.$pfdb).then((output) => {
+				console.log("Transaction Added", output);
+				this.symbol = null;
+				this.qty = null;
+				this.price = null;
 			});
 		},
 		createObj() {
@@ -113,7 +116,8 @@ export default {
 				'symbol': this.symbol,
 				'qty': this.qty,
 				'price': this.price,
-				'date': this.constructDate()
+				'date': this.constructDate(),
+				'type': this.picked
 			}
 			return val;
 		},
@@ -121,7 +125,7 @@ export default {
 			var d = new Date();
 			var month = parseInt(d.getMonth()) + 1;
 			return month + '/' + d.getDay() + '/' + d.getFullYear();
-		}
+		},
 	}
 }
 </script>

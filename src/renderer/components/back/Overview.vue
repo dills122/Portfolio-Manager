@@ -65,7 +65,7 @@ export default {
 					const data = {
 						label: Symbols[i],
 						data: this.getCloseValues(output[i]),
-						borderColor: getRandomColor(),
+						borderColor: getRandomColor(6),
 						fill: false
 					}
 					Arry.push(data);

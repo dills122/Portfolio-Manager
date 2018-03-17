@@ -22,13 +22,21 @@ function compareValues(key, order='asc') {
   };
 }
 
-function getRandomColor() {
+function getRandomColor(num) {
   var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+  var arry = [];
+  for(var j = 0; j < num; j++) {
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    //Add in to make sure no duplicates
+    // if(arry.findIndex(clrCode => clrCode === color) >= 0) {
+
+    // }
+    arry.push(color);
   }
-  return color;
+  return arry;
 }
 
 export {getRandomColor}

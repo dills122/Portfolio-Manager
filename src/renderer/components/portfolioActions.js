@@ -1,9 +1,9 @@
 import firebase from 'firebase';
 
-function addTransaction(obj) {
+function addTransaction(obj, dbRef) {
 	return new Promise((resolve, reject) => {
-		this.$pfdb.insert(obj, (err, newDoc) => {
-			resolve(err);
+		dbRef.insert(obj, (err, newDoc) => {
+			resolve(newDoc);
 		});
 	});
 }
@@ -11,9 +11,17 @@ function addTransaction(obj) {
 export{addTransaction}
 
 
-function retrieveTransactions() {
+function retrieveTransactions(dbRef) {
 	return new Promise((resolve,reject) => {
-		this.$pfdb.find({'u-id': firebase.auth().currentUser.uid}, function(err, docs) {
+		dbRef.find({'u-id': firebase.auth().currentUser.uid}, function(err, docs) {
+			resolve(docs);
+		});
+	});
+}
+
+function retrieveTransactions(dbRef, type) {
+	return new Promise((resolve,reject) => {
+		dbRef.find({'u-id': firebase.auth().currentUser.uid, 'type': type}, function(err, docs) {
 			resolve(docs);
 		});
 	});
