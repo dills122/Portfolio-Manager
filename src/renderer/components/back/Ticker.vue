@@ -87,6 +87,7 @@
 	margin: .6em auto;
 	#inner-tick {
 		font-size: 1.1em;
+		color: $font-color;
 		line-height: 1.1em;
 		width: 90%;
 		margin: 0 auto;
