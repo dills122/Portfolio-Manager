@@ -1,7 +1,6 @@
 <template>
 	<div class="pure-g action-area">
 		<div class="pure-u-1 padding">
-
 			<div class="pure-g">
 				<div class="pure-u-1-2">
 					<n3-input v-model="symbol" ref="input" show-clean placeholder="SYM" width="99%" ></n3-input>

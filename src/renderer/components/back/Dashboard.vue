@@ -1,19 +1,20 @@
 <template>
 	<div class="dashboard-container">
-	<div class="pure-g">
-		<div class="left-bar pure-u-1-5">
-			<ticker></ticker>
-			<profile-node></profile-node>
-			<action-area></action-area>
-		</div>
-		<div class="main-content pure-u-3-5">
-			<portfolio-overview></portfolio-overview>
-		</div>
-		<div class="right-bar pure-u-1-5">
-			<watch-list></watch-list>
-		</div>
-	</div>
-	<div class="footer pure-g"></div>
+		<n3-container fluid>
+			<n3-row>
+				<n3-column :col="2" class="left-bar">
+					<ticker></ticker>
+					<profile-node></profile-node>
+					<action-area></action-area>
+				</n3-column>
+				<n3-column :col="8" class="main-content">
+					<portfolio-overview></portfolio-overview>
+				</n3-column>
+				<n3-column :col="2" class="right-bar">
+					<watch-list></watch-list>
+				</n3-column>
+			</n3-row>
+		</n3-container>
 	</div>
 </template>
 
