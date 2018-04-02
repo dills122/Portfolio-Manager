@@ -1,5 +1,7 @@
 # Portfolio Manager
 
+[![Build Status](https://travis-ci.org/dills122/Portfolio-Manager.svg?branch=master)](https://travis-ci.org/dills122/Portfolio-Manager)
+
 > An app to track your portfolio
 
 ## Build Setup
