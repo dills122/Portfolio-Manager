@@ -4,30 +4,28 @@
 
 			<div class="pure-g">
 				<div class="pure-u-1-2">
-					<input type="text" name="" id="symbolAct" placeholder="SYM" v-model="symbol">
+					<n3-input v-model="symbol" ref="input" show-clean placeholder="SYM" width="99%" ></n3-input>
 				</div>
 				<div class="pure-u-1-2">
-					<input type="text" name="" id="priceAct" placeholder="Price" v-model="price">
+					<n3-input v-model="price" ref="input" show-clean placeholder="Price" width="99%" ></n3-input>
 				</div>
 			</div>
 			<div class="pure-g">
 				<div class="pure-u-1">
-					<input type="text" name="" id="quantityAct" placeholder="Quantity" v-model="qty">
+					<n3-input v-model="qty" ref="input" show-clean placeholder="Quantity" width="99%" ></n3-input>
 				</div>
 			</div>
 			<div class="pure-g top-pad">
 				<div class="pure-u-1">
-					<input type="radio" id="buyAct" value="Buy" v-model="picked">
-					<label for="buyAct">Buy</label>
-					<input type="radio" id="sellAct" value="Sell" v-model="picked">
-					<label for="sellAct">Sell</label>
+					<n3-radio-group v-model="picked" type="primary">
+  						<n3-radio-btn label="Buy">Buy</n3-radio-btn>
+  						<n3-radio-btn label="Sell">Sell</n3-radio-btn>
+					</n3-radio-group>
 				</div>
 			</div>
 			<div class="pure-g top-pad">
 				<div class="pure-u-1">
-					<a class="pure-button pure-button-primary" v-on:click="actionEvnt">
-						{{picked}}
-					</a>
+					<n3-button type="primary" @click.native="actionEvnt">{{picked}}</n3-button>
 				</div>
 			</div>	
 		</div>
@@ -42,34 +40,6 @@
 	padding-top: .5em;
 }
 
-[type="text"],
-[type="email"],
-[type="password"]{
-	color: $font-color;
-	padding: .25rem 0 0;
-	font-size: 1.25rem;
-	font-weight: 400;
-	width: 100%;
-	border: none;
-	border-bottom: 1px solid;
-	background: none;
-	transition: color .3s ease;
-	font-family: $font, sans-serif;
-
-	&::-webkit-input-placeholder {
-		color: $font-color;
-	}
-}
-[type="text"]:focus,
-[type="email"]:focus,
-[type="password"]:focus{
-	color: $font-color;
-	outline: 0;
-
-	&::-webkit-input-placeholder {
-		color: $sec-font-color;
-	}
-}
 .action-area {
 	.pure-button {
 		background-color: $main-accent-color;

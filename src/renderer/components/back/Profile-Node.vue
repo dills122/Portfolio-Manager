@@ -4,10 +4,9 @@
 		<div class="header-area">{{ name }}</div>
 		<div class="info-area"></div>
 		<div class="exit-area">
-			<a class="pure-button pure-button-primary" v-on:click="signOut">
-				<i class="icon ion-log-out"></i>
-			Sign Out</a>
+			<n3-button type="primary" @click.native="signOut">Sign Out</n3-button>
 		</div>
+		
 	</div>
 	</div>
 </template>

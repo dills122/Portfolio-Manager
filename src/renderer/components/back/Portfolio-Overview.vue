@@ -1,11 +1,20 @@
 <template>
 	<div class="p-overview">
-		<Overview :chart-data="data"></Overview>
+		<div class="chart-wrapper">
+			<Overview :chart-data="data" :options="{responsive: true, maintainAspectRatio: true}"></Overview>
+		</div>
+		<div>
+			
+		</div>
 	</div>
 </template>
 
 <style type="text/css" lang="scss">
-	
+	.chart-wrapper {
+		width: 65%;
+		height: auto;
+
+	}
 </style>
 
 <script type="text/javascript">
@@ -19,6 +28,7 @@ import Overview from './OverviewPie.js'
 			return {
 				transLst: [],
 				data: null,
+				value: null
 			}
 		},
 		components: {

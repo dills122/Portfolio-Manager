@@ -1,10 +1,7 @@
 <template>
 	<div class="watch-list-node">
 		<div>
-			<input type="text" name="" placeholder="SYM" v-model="aStock">
-			<div v-on:click="AddWatchList" class="add-btn">
-				<i class="icon ion-plus-round"></i>
-			</div>
+			<n3-input v-model="aStock" ref="input" show-clean placeholder="SYM" width="99%" @keyup.native.enter="AddWatchList"></n3-input>
 		</div>
 		<div class="watch-list-area">
 			<ul>
@@ -80,31 +77,6 @@ ul {
 	.w-val {
 		float: right;
 		text-align: right;
-	}
-}
-[type="text"]{
-	color: $font-color;
-	padding: .25rem 0 0;
-	font-size: 1.25rem;
-	font-weight: 400;
-	width: 85%;
-	margin: 0 auto;
-	border: none;
-	border-bottom: 1px solid;
-	background: none;
-	transition: color .3s ease;
-	font-family: $font, sans-serif;
-
-	&::-webkit-input-placeholder {
-		color: $font-color;
-	}
-}
-[type="text"]:focus {
-	color: $font-color;
-	outline: 0;
-
-	&::-webkit-input-placeholder {
-		color: $sec-font-color;
 	}
 }
 .clear {
