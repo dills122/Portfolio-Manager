@@ -1,20 +1,16 @@
 <template>
-	<div class="dashboard-container">
-		<n3-container fluid>
-			<n3-row>
-				<n3-column :col="2" class="left-bar">
-					<ticker></ticker>
-					<profile-node></profile-node>
-					<action-area></action-area>
-				</n3-column>
-				<n3-column :col="8" class="main-content">
-					<portfolio-overview></portfolio-overview>
-				</n3-column>
-				<n3-column :col="2" class="right-bar">
-					<watch-list></watch-list>
-				</n3-column>
-			</n3-row>
-		</n3-container>
+	<div class="row dashboard-container">
+		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+			<ticker></ticker>
+			<profile-node></profile-node>
+			<action-area></action-area>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">
+			<portfolio-overview></portfolio-overview>
+		</div>
+		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+			<watch-list></watch-list>
+		</div>
 	</div>
 </template>
 
@@ -22,6 +18,8 @@
 	.dashboard-container {
 		width: 100%;
 		height: auto;
+		min-height: 100vh;
+		flex-wrap:nowrap;
 
 		.left-bar {
 			min-height: 100vh;

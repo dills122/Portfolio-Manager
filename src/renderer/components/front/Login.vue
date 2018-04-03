@@ -5,15 +5,15 @@
 		</div>
 		<div class="inner-container">
 			<div class="text-input">
-				<input type="text" id="email" placeholder="Email" v-model="email">
+				<n3-input v-model="email" ref="email" show-clean placeholder="Email" width="99%" ></n3-input>
 			</div>
 			<div class="text-input">
-				<input type="password" id="password" placeholder="Password" v-model="password">
+				<n3-input v-model="password" ref="password" type="password" show-clean placeholder="Password" width="99%" ></n3-input>
 				<div>
 					<router-link v-bind:to="{ name: 'forgot-pass' }">Forgot Password</router-link>
 				</div>
 			</div>
-			<button type="submit" class="" v-on:click="signIn">Login</button>
+			<n3-button type="primary" @click.native="signIn">Login</n3-button>
 		</div>
 		<div class="new-user">
 			<router-link v-bind:to="{ name: 'new-user' }">New Here?</router-link>
@@ -66,64 +66,12 @@
 
 		background-color: $secondary-color;
 
-		.text-input {
-			padding: .5em 0;
-
-			div {
-				padding-top: .3em;
-			}
-		}
-
 		a {
 			color: $font-color;
+			margin: .5em 0;
 		}
 
 		a:hover {
-			color: $sec-font-color;
-		}
-
-		[type="text"],
-		[type="email"],
-		[type="password"]{
-			color: $font-color;
-			padding: .25rem 0 0;
-			font-size: 1.25rem;
-			font-weight: 400;
-			width: 100%;
-			border: none;
-			border-bottom: 1px solid;
-			background: none;
-			transition: color .3s ease;
-			font-family: $font, sans-serif;
-
-			&::-webkit-input-placeholder {
-				color: $font-color;
-			}
-		}
-		[type="text"]:focus,
-		[type="email"]:focus,
-		[type="password"]:focus{
-			color: $font-color;
-			outline: 0;
-
-			&::-webkit-input-placeholder {
-				color: $sec-font-color;
-			}
-		}
-
-		button {
-			background-color: $main-accent-color;
-			border: none;
-			padding: .6em .5em;
-			width: 80%;
-			margin: 0 auto;
-			margin-top: .75em;
-			font-family: $font, sans-serif;
-			font-size: 1.1em;
-			color: $font-color;
-		}
-		button:hover {
-			background-color: $minor-accent-color;
 			color: $sec-font-color;
 		}
 	}
