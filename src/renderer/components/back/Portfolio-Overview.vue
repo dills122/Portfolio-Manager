@@ -1,17 +1,22 @@
 <template>
-	<div class="p-overview">
+	<div>
 		<div>Portfolio Overview</div>
-		<div class="stock-scroller">
-			<ul>
-				<li v-for="sym in stocks">
-					<span>{{sym.symbol}}</span>
-					<span>{{sym.qty}}</span>
-					<span> ${{sym.close}}</span>
-				</li>
-			</ul>
-		</div>
-		<div class="stock-info">
-			
+		<div class="p-overview">
+			<div class="stock-scroller">
+				<ul>
+					<li v-for="sym in stocks" v-on:click="getStockStats(sym.symbol)">
+						<span>{{sym.symbol}}</span>
+						<span>{{sym.qty}}</span>
+						<span> ${{sym.close}}</span>
+					</li>
+				</ul>
+			</div>
+			<div class="stock-info">
+				<div>
+					<div>{{stockStats.companyName}}</div>
+					<div>{{stockStats.marketcap}}</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -20,24 +25,42 @@
 	.p-overview {
 		color: $font-color;
 		font-family: $font;
+		display: flex;
+		overflow: hidden;
+		justify-content: space-around;
+
+
 	}
 	.stock-scroller {
-		position: relative;
 		overflow-y:auto;
-		width: 40%;
+		width: 32%;
+		padding: .35em;
+		display: inline-block;
 		height: auto;
-		min-height: 5.5em;
+		
+	
 
 		ul {
 			color: $font-color;
 			font-family: $font;
+
+			li {
+				display: flex;
+				justify-content: space-between;
+			}
 		}
+	}
+	.stock-info {
+		display: inline-block;
+		width: 62%;
+		height: auto;
+		min-height: 5.5em;
 	}
 </style>
 
 <script type="text/javascript">
 import {retrieveTransactions} from '../portfolioActions'
-import {getCloseVals} from '../retrieveStockInfo'
+import {getCloseVals,getStockStats} from '../retrieveStockInfo'
 import {getRandomColor} from '../global'
 
 	export default {
@@ -46,11 +69,13 @@ import {getRandomColor} from '../global'
 				transLst: [],
 				data: null,
 				value: null,
-				stocks: []
+				stocks: [],
+				stockStats: null
 			}
 		},
 		created() {
 			this.buildData();
+			this.getStockStats("F");
 		},
 		methods: {
 			buildData() {
@@ -67,6 +92,11 @@ import {getRandomColor} from '../global'
 						});
 						resolve("Complete");
 					});
+				});
+			},
+			getStockStats(sym) {
+				getStockStats(sym).then((data) => {
+					this.stockStats = data;
 				});
 			},
 			// fillStockValues(compiledStocks) {
@@ -92,7 +122,7 @@ import {getRandomColor} from '../global'
 							var val = {
 								'symbol': element.symbol,
 								'qty': element.qty,
-								'close': stock[0].close
+								'close': Number(stock[0].close).toFixed(2)
 							}
 							compiledStocks.push(val);
 						});

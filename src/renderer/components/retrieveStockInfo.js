@@ -45,3 +45,15 @@ function fullObj(data) {
 	}
 	return stock;
 }
+
+function getStockStats(sym) {
+	var url = "https://api.iextrading.com/1.0/stock/" + sym + "/stats";
+	return new Promise((resolve, reject) => {
+		fetch(url)
+		.then((resp) => resp.json())
+		.then(function(data) {
+			resolve(data);
+		});
+	});
+}
+export {getStockStats}

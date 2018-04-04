@@ -57,6 +57,10 @@
 		}
 	}
 
+	.text-input {
+		padding: .25em 0;
+	}
+
 	.inner-container {
 		display: flex;
 		flex-direction: column;
