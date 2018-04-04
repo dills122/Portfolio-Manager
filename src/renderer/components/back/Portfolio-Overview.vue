@@ -5,16 +5,26 @@
 			<div class="stock-scroller">
 				<ul>
 					<li v-for="sym in stocks" v-on:click="getStockStats(sym.symbol)">
-						<span>{{sym.symbol}}</span>
-						<span>{{sym.qty}}</span>
-						<span> ${{sym.close}}</span>
+						<div>{{sym.symbol}}</div>
+						<div class="center">{{sym.qty}}</div>
+						<div> ${{sym.close}}</div>
 					</li>
 				</ul>
 			</div>
 			<div class="stock-info">
-				<div>
-					<div>{{stockStats.companyName}}</div>
-					<div>{{stockStats.marketcap}}</div>
+				<div v-if="stockStats">
+					<div class="center">{{stockStats.companyName}}</div>
+					<div class="stats-area">
+						<div>
+							<div>Market Cap: {{Number(stockStats.marketcap).toLocaleString()}}</div>
+						</div>
+						<div>
+							
+						</div>
+					</div>
+				</div>
+				<div v-else>
+					<p><n3-loading size="lg"></n3-loading></p>
 				</div>
 			</div>
 		</div>
@@ -33,7 +43,7 @@
 	}
 	.stock-scroller {
 		overflow-y:auto;
-		width: 32%;
+		width: 34%;
 		padding: .35em;
 		display: inline-block;
 		height: auto;
@@ -44,9 +54,14 @@
 			color: $font-color;
 			font-family: $font;
 
-			li {
+			> li {
 				display: flex;
 				justify-content: space-between;
+				cursor: pointer;
+
+				div {
+					flex: 1;
+				}
 			}
 		}
 	}
@@ -55,6 +70,17 @@
 		width: 62%;
 		height: auto;
 		min-height: 5.5em;
+	}
+	.stats-area {
+		display: flex;
+		justify-content: space-between;
+
+		> div {
+			flex: 1;
+		}
+	}
+	.center {
+		text-align: center;
 	}
 </style>
 

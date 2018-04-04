@@ -16,7 +16,7 @@
 					<n3-input v-model="qty" ref="input" show-clean placeholder="Quantity" width="99%" ></n3-input>
 				</div>
 			</div>
-			<div class="row top-pad">
+			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<n3-radio-group v-model="picked" type="primary">
   						<n3-radio-btn label="Buy">Buy</n3-radio-btn>
@@ -24,7 +24,7 @@
 					</n3-radio-group>
 				</div>
 			</div>
-			<div class="row top-pad">
+			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<n3-button type="primary" @click.native="actionEvnt">{{picked}}</n3-button>
 				</div>
@@ -51,6 +51,11 @@
 			background-color: $minor-accent-color;
 			color: $sec-font-color;
 		}
+	}
+
+	.row {
+		width: 90%;
+		margin: .35em auto;
 	}
 }
 </style>

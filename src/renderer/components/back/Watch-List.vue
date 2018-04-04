@@ -6,20 +6,25 @@
 		<div class="watch-list-area">
 			<ul>
 				<li v-for="sym in Symbls">
-					<span class="w-sym">{{sym.symbol}}</span>
-					<span class="w-val">
-						<div>${{sym.value}}</div>
-						<div class="under-area">
-							<span v-if="sym.change > 0">
-								{{sym.change}} &nbsp;
-								<i class="icon ion-arrow-up-b up"></i>
-							</span>
-							<span v-else>
-								{{sym.change}} &nbsp;
-  								<i class="icon ion-arrow-down-b down"></i>
-							</span>
+					<div v-if="Symbls" class="w-list-area">
+						<div class="w-sym">{{sym.symbol}}</div>
+						<div class="w-val">
+							<div>${{sym.value}}</div>
+							<div class="under-area">
+								<span v-if="sym.change > 0">
+									{{sym.change}} &nbsp;
+									<i class="icon ion-arrow-up-b up"></i>
+								</span>
+								<span v-else>
+									{{sym.change}} &nbsp;
+	  								<i class="icon ion-arrow-down-b down"></i>
+								</span>
+							</div>
 						</div>
-					</span>
+					</div>
+					<div v-else>
+						
+					</div>
 					<div class="clear"></div>
 				</li>
 			</ul>
@@ -38,7 +43,6 @@
 
 .under-area {
 	font-size: .65em;
-	text-align: center;
 }
 .up {
 	color: #27ae60;
@@ -70,17 +74,19 @@ ul {
 	list-style-type: none;
 	padding: 2.5%;
 	font-size: 1.05em;
+}
 
-	.w-sym {
-		float: left;
+.w-list-area {
+	display: flex;
+	justify-content: space-between;
+
+	> div {
+		flex: 1;
 	}
+
 	.w-val {
-		float: right;
 		text-align: right;
 	}
-}
-.clear {
-	clear:both;
 }
 </style>
 

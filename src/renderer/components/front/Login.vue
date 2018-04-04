@@ -101,7 +101,6 @@ export default {
 				function(user) {
 					//alert('Well Done')
 					console.log("Authed");
-					console.log(user);
 					//initialize.initializeApp();
 					Router.push('/dashboard');					},
 					function(err) {
