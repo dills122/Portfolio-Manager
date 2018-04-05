@@ -1,14 +1,13 @@
 <template>
-	<div class="container">
+	<div class="new-u-container">
 		<form>
 			<div class="header">Sign Up</div>
 			<div class="inner-container">
-				<input type="text" name="" id="FName" placeholder="First Name">
-				<input type="text" name="" id="LName" placeholder="Last Name">
-				<input type="email" name="" id="Email" placeholder="Email" v-model="email">
-				<input type="password" name="" id="Password" placeholder="Password" v-model="password">
-				<input type="password" name="" id="RetryPass" placeholder="Confirm Password">
-				<button type="submit" class="" v-on:click="createUser">Create Account</button>
+				<n3-input v-model="fName" ref="input" show-clean placeholder="First Name" width="99%" ></n3-input>
+				<n3-input v-model="lName" ref="input" show-clean placeholder="Last Name" width="99%" ></n3-input>
+				<n3-input v-model="email" ref="input" show-clean placeholder="Email" width="99%" ></n3-input>
+				<n3-input v-model="password" ref="input" show-clean placeholder="Password" width="99%" ></n3-input>
+				<n3-button type="primary" @click.native="createUser">Create Account</n3-button>
 			</div>
 		</form>
 		<div class="return-link">
@@ -26,16 +25,22 @@
 		    text-align: center;
 	}
 
-	.container {
-			text-align: center;
-			color: white;
-			margin-top: 18em;
-		}
+	.new-u-container {
+		display: flex;
+		justify-content: center;
+		height: auto;
+		width: 35%;
+		min-width: 245px;
+		font-family: $font, sans-serif;
+		flex-direction: column;
+	}
 
 	.inner-container {
 		width: 20em;
 		padding: 2em;
 		background-color: $secondary-color; 
+		margin: 0 auto;
+		text-align: center;
 
 		input{
 		margin-bottom: 1em;
@@ -84,7 +89,9 @@
 		data: function() {
 			return {
 				email: '',
-				password: ''
+				password: '',
+				fName: '',
+				lName: ''
 			}
 		},
 		methods: {

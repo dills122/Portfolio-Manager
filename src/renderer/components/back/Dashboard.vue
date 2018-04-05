@@ -1,19 +1,16 @@
 <template>
-	<div class="dashboard-container">
-	<div class="pure-g">
-		<div class="left-bar pure-u-1-5">
+	<div class="row dashboard-container">
+		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
 			<ticker></ticker>
 			<profile-node></profile-node>
 			<action-area></action-area>
 		</div>
-		<div class="main-content pure-u-3-5">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">
 			<portfolio-overview></portfolio-overview>
 		</div>
-		<div class="right-bar pure-u-1-5">
+		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
 			<watch-list></watch-list>
 		</div>
-	</div>
-	<div class="footer pure-g"></div>
 	</div>
 </template>
 
@@ -21,6 +18,8 @@
 	.dashboard-container {
 		width: 100%;
 		height: auto;
+		min-height: 100vh;
+		flex-wrap:nowrap;
 
 		.left-bar {
 			min-height: 100vh;
