@@ -26,7 +26,6 @@ Currently not a full working build avaliable and account creation is not avaliab
 ## Built With
 
 * [electron-vue](https://github.com/SimulatedGREG/electron-vue) - Boilerplate
-* [Pure CSS](https://purecss.io/) - CSS Library
 * [Chartjs](http://www.chartjs.org/) - Charting Library
 * [NeDB](https://github.com/louischatriot/nedb) - Embedded Database
 
