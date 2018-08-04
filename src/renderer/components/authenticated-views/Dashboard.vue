@@ -2,6 +2,9 @@
 	<div class="row dashboard-container">
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 left-bar">
 			<stock-ticker></stock-ticker>
+			<div>
+				<router-link v-bind:to="{ name: 'login' }">Login Test</router-link>
+			</div>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 center-content"></div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 right-bar">

@@ -3,6 +3,8 @@ import Router from 'vue-router';
 // import firebase from 'firebase'
 
 import Dashboard from '@/components/authenticated-views/Dashboard';
+import Login from '@/components/unauthenticated-views/Login';
+import NewUser from '@/components/unauthenticated-views/NewUser';
 
 Vue.use(Router);
 
@@ -20,6 +22,16 @@ const router = new Router({
       path: '/dash',
       name: 'dash',
       component: Dashboard,
+    },
+    { 
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
+    {
+      path: '/new',
+      name: 'new',
+      component: NewUser,
     },
   ],
 });
