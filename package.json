@@ -2,7 +2,7 @@
   "name": "personal-portfolio",
   "productName": "personal-portfolio",
   "version": "0.0.0",
-  "author": "Dylan Steele <dylansteele57@gmail.com>",
+  "author": "Dylan Steele ",
   "description": "A personal portfolio manager/viewer",
   "license": null,
   "main": "./dist/electron/main.js",
