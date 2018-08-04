@@ -18,7 +18,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
  * that provide pure *.vue files that need compiling
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
  */
-let whiteListedModules = ['vue', 'firebase/firestore']
+let whiteListedModules = ['vue']
 
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
@@ -30,6 +30,17 @@ let rendererConfig = {
   ],
   module: {
     rules: [
+      // {
+      //   test: /\.(js|vue)$/,
+      //   enforce: 'pre',
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'eslint-loader',
+      //     options: {
+      //       formatter: require('eslint-friendly-formatter')
+      //     }
+      //   }
+      // },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -57,8 +68,8 @@ let rendererConfig = {
           options: {
             extractCSS: process.env.NODE_ENV === 'production',
             loaders: {
-              sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1&data=@import "./src/renderer/stylesheets/global"',
-              scss: 'vue-style-loader!css-loader!sass-loader?data=@import "./src/renderer/stylesheets/global";'
+              sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1&data=@import "./src/renderer/styles/global"',
+              scss: 'vue-style-loader!css-loader!sass-loader?data=@import "./src/renderer/styles/global";'
             }
           }
         }

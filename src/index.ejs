@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>stock-app</title>
+    <meta charset="utf-8">
+    <title>personal-portfolio</title>
     <% if (htmlWebpackPlugin.options.nodeModules) { %>
       <!-- Add `node_modules/` to global paths so `require` works properly in development -->
       <script>
         require('module').globalPaths.push('<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, '\\\\') %>')
       </script>
-          <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-          <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-firestore.js"></script>
     <% } %>
   </head>
   <body>

@@ -1,31 +1,32 @@
 <template>
-  <div id="app" class="background">
+  <div id="app" class="background main-container">
     <link href="https://fonts.googleapis.com/css?family=Lato|Quicksand" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+
   export default {
-    name: 'stock-app'
-  }
+    name: 'personal-portfolio',
+  };
 </script>
 
 <style lang="scss">
-	html, body {
-		margin: 0;
-		padding: 0;
-		font-size: 100%;
-	}
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+  }
   /* CSS */
   .background {
-  	background-color: $back-color;
+    background-color: $back-color;
   }
 
   #app {
-  	display: flex;
+    display: flex;
     justify-content: center;
     min-height: 100vh;
     align-items:center;
