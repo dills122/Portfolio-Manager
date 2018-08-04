@@ -110,73 +110,73 @@
 
 <script type="text/javascript">
 import { getStockInfo } from '../../api-access/stock-access.js';
-import {retrieveWatchlist, addWatchlistItem} from '../../data-access/watchlist-access.js';
-	export default {
-		data() {
-			return {
-				objArry: [],
-				currObj: null,
-				timer: null,
-				isReturning: false,
-				isLeaving: false,
-				transTime: 1100,
-			};
-		},
-		created() {
-			this.gatherWatchList().then((value) => {
-				if(value !== null) {
-					this.initializeTicker(4000);
-				}
-			});
-		},
-		methods: {
-			initializeTicker(time) {
-				this.timer = setInterval(() => {
-					this.isReturning = false;
-					this.switchTicker();
-				}, time);
-			},
-			switchTicker() {
-				this.isLeaving = true;
-				setTimeout(() => {
-					this.changeTickerValues();
-					this.isLeaving=false;
-					this.isReturning = true;
-				});
-			},
-			changeTickerValues() {
-				var index = this.objArry.indexOf(this.currObj);
+import { retrieveWatchlist, addWatchlistItem } from '../../data-access/watchlist-access.js';
+export default {
+  data() {
+    return {
+      objArry: [],
+      currObj: null,
+      timer: null,
+      isReturning: false,
+      isLeaving: false,
+      transTime: 1100,
+    };
+  },
+  created() {
+    this.gatherWatchList().then((value) => {
+      if (value !== null) {
+        this.initializeTicker(4000);
+      }
+    });
+  },
+  methods: {
+    initializeTicker(time) {
+      this.timer = setInterval(() => {
+        this.isReturning = false;
+        this.switchTicker();
+      }, time);
+    },
+    switchTicker() {
+      this.isLeaving = true;
+      setTimeout(() => {
+        this.changeTickerValues();
+        this.isLeaving = false;
+        this.isReturning = true;
+      });
+    },
+    changeTickerValues() {
+      const index = this.objArry.indexOf(this.currObj);
 
-				if(index >= 0 && index < this.objArry.length - 1) {
-					this.currObj = this.objArry[index+ 1];
-				} else {
-					this.currObj = this.objArry[0];
-				}
-			},
-			gatherWatchList() {
-				return new Promise((resolve, reject) => {
-					retrieveWatchlist(100).then((value) => {
-						if(value !== null) {
-							value.forEach((value, index) => {
-								if(index === 0) {
-									this.gatherStockInfo(value.symbol, true);
-								} else {
-									this.gatherStockInfo(value.symbol,false);
-								}
-							});
-							resolve(this.objArry);
-						}
-					});
-				});				
-			},
-			gatherStockInfo(symbol, setInitial) {
-				getStockInfo(symbol, 'watchlist').then((value) => {
-					if(setInitial) {
-						this.currObj = value;
-					}
-					this.objArry.push(value);
-				});
-			},
-		},
-	};
+      if (index >= 0 && index < this.objArry.length - 1) {
+        this.currObj = this.objArry[index + 1];
+      } else {
+        this.currObj = this.objArry[0];
+      }
+    },
+    gatherWatchList() {
+      return new Promise((resolve, reject) => {
+        retrieveWatchlist(100).then((value) => {
+          if (value !== null) {
+            value.forEach((value, index) => {
+              if (index === 0) {
+                this.gatherStockInfo(value.symbol, true);
+              } else {
+                this.gatherStockInfo(value.symbol, false);
+              }
+            });
+            resolve(this.objArry);
+          }
+        });
+      });
+    },
+    gatherStockInfo(symbol, setInitial) {
+      getStockInfo(symbol, 'watchlist').then((value) => {
+        if (setInitial) {
+          this.currObj = value;
+        }
+        this.objArry.push(value);
+      });
+    },
+  },
+};
 </script>

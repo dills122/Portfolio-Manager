@@ -6,7 +6,9 @@
 				<router-link v-bind:to="{ name: 'login' }">Login Test</router-link>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 center-content"></div>
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 center-content">
+			<stock-details></stock-details>
+		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 right-bar">
 			<watch-list></watch-list>
 		</div>
@@ -37,6 +39,8 @@
 <script type="text/javascript">
 	import Watchlist from './dashboard-components/WatchList';
 	import Ticker from './dashboard-components/Ticker';
+	import WatchlistInfo from './dashboard-components/WatchListDetails';
+
 	export default {
 	  data() {
 	    return {
@@ -48,6 +52,7 @@
 	  components: {
 	    'watch-list': Watchlist,
 	    'stock-ticker': Ticker,
+	    'stock-details': WatchlistInfo,
 	  },
 	};
 </script>

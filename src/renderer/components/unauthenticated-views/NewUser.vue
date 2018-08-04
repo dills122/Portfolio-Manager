@@ -80,33 +80,32 @@
 </style>
 
 <script type="text/javascript">
-	//import firebase from 'firebase'
+	// import firebase from 'firebase'
 	import Router from '../../router';
 
 	export default {
-		name: 'login',
-		data: function() {
-			return {
-				email: '',
-				password: '',
-				fName: '',
-				lName: ''
-			}
-		},
-		methods: {
-			createUser: function() {
-				firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch(function(error) {
-					  // Handle Errors here.
-					  var errorCode = error.code;
-					  var errorMessage = error.message;
-					  alert(error.message);
-
-					});
-			},
-			FocusTxt: function() {
-				//var lb = document.getElementById("email-lb");
-				//lb.className += "raised" + " highlight";
-			}
-		},
+	  name: 'login',
+	  data() {
+    return {
+      email: '',
+      password: '',
+      fName: '',
+      lName: '',
+    };
+  },
+	  methods: {
+	    createUser() {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch((error) => {
+			  // Handle Errors here.
+			  const errorCode = error.code;
+			  const errorMessage = error.message;
+			  alert(error.message);
+	      });
+    },
+	    FocusTxt() {
+      // var lb = document.getElementById("email-lb");
+      // lb.className += "raised" + " highlight";
+    },
+	  },
 	};
 </script>

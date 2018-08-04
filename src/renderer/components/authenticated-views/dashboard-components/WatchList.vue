@@ -49,14 +49,30 @@
 <style type="text/css" lang="scss">
 	.add-watchlist-area {
 		margin: .5em auto;
+    
 	}
 	.watch-list-area {
 		margin-top: 1.5em;
+
+    
 	}
+
+    .watch-list-area::-webkit-scrollbar {
+    width: .5em;
+  }
+ 
+  .watch-list-area::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+   
+  .watch-list-area::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
 </style>
 <script type="text/javascript">
 import { getStockInfo } from '../../api-access/stock-access.js';
-import {retrieveWatchlist, addWatchlistItem} from '../../data-access/watchlist-access.js';
+import { retrieveWatchlist, addWatchlistItem } from '../../data-access/watchlist-access.js';
 export default {
   data() {
     return {
@@ -70,11 +86,11 @@ export default {
   	this.fillWatchlist();
   },
   methods: {
-  	addSymbol(stock,type) {
+  	addSymbol(stock, type) {
   		getStockInfo(stock, 'watchlist').then((value) => {
   			if (this.Symbols.find(stock => stock.symbol === value.symbol) === undefined) {
   				this.Symbols.push(value);
-  				if(type) {
+  				if (type) {
   					this.addItemToWatchlist(value.symbol);
   				}
   				this.newStock = '';
@@ -95,15 +111,15 @@ export default {
   	},
   	addItemToWatchlist(symbol) {
   		const obj = {
-  			'symbol': symbol,
+  			symbol,
   			'u-id': this.uid,
   		};
   		addWatchlistItem(obj).then((value) => {
-  			if(value !== null) {
-  				console.log(symbol + " Successfully added");
+  			if (value !== null) {
+  				console.log(`${symbol} Successfully added`);
   			}
   		});
-  	}
+  	},
   },
 };
 </script>

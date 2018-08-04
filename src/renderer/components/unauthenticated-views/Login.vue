@@ -83,34 +83,35 @@
 </style>
 
 <script type="text/javascript">
-//import firebase from 'firebase';
+// import firebase from 'firebase';
 import Router from '../../router';
 
 export default {
-	name: 'login',
-	data: function() {
-		return {
-			email: '',
-			password: ''
-		}
-	},
-	methods: {
-		signIn: function() {
-			firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(
-				function(user) {
-					//alert('Well Done')
-					console.log("Authed");
-					//initialize.initializeApp();
-					Router.push('/dashboard');					},
-					function(err) {
-						alert("Oppps failed");
-					}
-					);
-		},
-		FocusTxt: function() {
-			var lb = document.getElementById("email-lb");
-			lb.className += "raised" + " highlight";
-		}
-	}
-}
+  name: 'login',
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    signIn() {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+        (user) => {
+          // alert('Well Done')
+          console.log('Authed');
+          // initialize.initializeApp();
+          Router.push('/dashboard');
+        },
+        (err) => {
+          alert('Oppps failed');
+        },
+      );
+    },
+    FocusTxt() {
+      const lb = document.getElementById('email-lb');
+      lb.className += 'raised' + ' highlight';
+    },
+  },
+};
 </script>

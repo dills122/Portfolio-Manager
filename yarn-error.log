@@ -18,7 +18,7 @@ npm manifest:
     "name": "personal-portfolio",
     "productName": "personal-portfolio",
     "version": "0.0.0",
-    "author": "Dylan Steele <dylansteele57@gmail.com>",
+    "author": "Dylan Steele ",
     "description": "A personal portfolio manager/viewer",
     "license": null,
     "main": "./dist/electron/main.js",
@@ -46,6 +46,7 @@ npm manifest:
       "electron": "^1.8.7",
       "flexboxgrid": "^6.3.1",
       "nedb": "^1.8.0",
+      "numeral": "^2.0.6",
       "propellerkit-custom-scrollbar": "^1.2.0",
       "vue": "^2.3.3",
       "vue-electron": "^1.0.6",
@@ -6011,6 +6012,10 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   
+  numeral@^2.0.6:
+    version "2.0.6"
+    resolved "https://registry.yarnpkg.com/numeral/-/numeral-2.0.6.tgz#4ad080936d443c2561aed9f2197efffe25f4e506"
+  
   oauth-sign@~0.8.1, oauth-sign@~0.8.2:
     version "0.8.2"
     resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
@@ -8856,7 +8861,7 @@ Trace:
   Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
   Arguments: /d /s /c npm run lint:fix
-  Directory: C:\Users\dss25\Documents\GitHub\Portfolio-Manager
+  Directory: E:\GitHub\Portfolio-Manager
   Output:
   
       at ProcessTermError.MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)

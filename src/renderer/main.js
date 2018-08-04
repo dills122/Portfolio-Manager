@@ -7,6 +7,7 @@ import watchlistDb from './datastore/watchlist';
 import portfolioDb from './datastore/portfolio';
 import N3Components from 'N3-components';
 import 'N3-components/dist/index.min.css';
+import numerial from 'numeral';
 
 import App from './App';
 import router from './router';
