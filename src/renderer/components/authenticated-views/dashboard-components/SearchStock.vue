@@ -5,7 +5,7 @@
 				<n3-input v-model="searchStock" ref="input" show-clean placeholder="Symbol" width="99%" @keyup.native.enter="searchForStock"></n3-input>
 			</div>
 			<div v-if="keyStats !== null" class="search-content">
-			<n3-card class="card-style">
+			<n3-card class="card-style" :hover="hover">
 				<div class="row">
 					<div class="col-md-6 col-lg-6 col-sm-6">
 						<ul class="stats-info">
@@ -75,9 +75,13 @@
 	}
 	.card-style {
 		border-radius: .2em;
+		background-color: $middle-color;
+		color: $font-color;
+		box-shadow: none;
 	}
 	.search-content {
 		margin: .5em auto;
+
 
 		.row {
 			padding: .35em;
@@ -99,6 +103,7 @@ export default {
       searchStock: null,
       keyStats: null,
       transitioning: null,
+      hover: false,
     };
   },
   created() {

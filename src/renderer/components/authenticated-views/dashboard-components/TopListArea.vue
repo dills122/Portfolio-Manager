@@ -1,43 +1,62 @@
 <template>
-	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-			<n3-card class="flex">
-				<div class="flex">
-				<div v-for="item in topGainers" class="gainers-content">
-					<span>{{item.name}}</span>
-					<span>{{item.symbol}}</span>
-					<span>{{item.ytd}}</span>
+	<div>
+		<n3-card class="inner-padding list-card" :hover="hover">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<h4>Top Gainers</h4>
+						<div v-for="item in topGainers" class="gainers-content">
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									{{item.symbol}}
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									{{item.ytd}}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<h4>Top Losers</h4>
+						<div v-for="item in topLosers" class="losers-content">
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									{{item.symbol}}
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									{{item.ytd}}
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			</n3-card>
-		</div>
-		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-			<n3-card>
-				<div class="flex">
-				<div v-for="item in topLosers" class="losers-content">
-					<span>{{item.name}}</span>
-					<span>{{item.symbol}}</span>
-					<span>{{item.ytd}}</span>
-				</div>
-			</div>
-			</n3-card>
-		</div>
+		</n3-card>	
 	</div>
 </template>
 
 <style type="text/css" lang="scss">
-	.flex {
-		display: flex;
-		flex-direction: column;
-	}
-	.losers-content {
-		font-size: .75em;
-		flex: 1;
-	}
-	.gainers-content {
-		font-size: .75em;
-		flex: 1;
-	}
+.inner-padding {
+	padding: .25em;
+}
+
+.list-card {
+	border-radius: .25em;
+	background-color: $middle-color;
+	color: $font-color;
+	box-shadow: none;
+}
+.small-gutters {
+	padding: .2em;
+}
+.losers-content {
+	font-size: .75em;
+	flex: 1;
+}
+.gainers-content {
+	font-size: .75em;
+	flex: 1;
+}
 </style>
 
 <script type="text/javascript">
@@ -47,6 +66,7 @@ import { getListInfo } from '../../api-access/stock-access.js';
 			return {
 				topGainers: [],
 				topLosers: [],
+				hover: false,
 			};
 		},
 		created() {

@@ -29,6 +29,7 @@
 	.center-content {
 		background-color: $back-color;
 		min-height: 100vh;
+		padding: 0 .15em;
 	}
 	.center-container {
 		width: 100%;
@@ -36,6 +37,7 @@
     	max-height: 100vh;
     	min-width: 50px;
     	background-color: $back-color;
+    	padding: .25em .85em;
 	}
 	.right-bar {
 		background-color: $middle-color;
