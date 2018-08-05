@@ -26,7 +26,8 @@
 	}
 	.right-bar {
 		background-color: $middle-color;
-		min-height: 100vh;
+		// min-height: 100vh;
+		position: relative;
 	}
 	.dashboard-container {
 		width: 100%;

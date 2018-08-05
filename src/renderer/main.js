@@ -1,4 +1,3 @@
-import 'propellerkit-custom-scrollbar/css/pmd-scrollbar.css';
 import 'flexboxgrid/css/flexboxgrid.min.css';
 import 'N3-components/dist/index.min.css';
 import Vue from 'vue';
@@ -8,12 +7,15 @@ import portfolioDb from './datastore/portfolio';
 import N3Components from 'N3-components';
 import 'N3-components/dist/index.min.css';
 import numerial from 'numeral';
+import ScrollBar from 'vue2-scrollbar';
+import 'vue2-scrollbar/dist/style/vue2-scrollbar.css';
 
 import App from './App';
 import router from './router';
 
 // install N3
 Vue.use(N3Components);
+Vue.use(ScrollBar);
 
 // for English  (default chinese)
 // version 2.2.0 or later
