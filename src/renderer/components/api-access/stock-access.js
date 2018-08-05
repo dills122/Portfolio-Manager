@@ -48,8 +48,8 @@ function getWatchlistInfo(symbol) {
     retrieveStockInfo(symbol).then((val) => {
       object = {
         symbol,
-        'recent-close': val.close,
-        change: val.changeOverTime.toFixed(2),
+        'recent-close': numeral(val.close).format('$0,0.00'),
+        change: numeral(val.changeOverTime).format('(0.00 %)'),
       };
       resolve(object);
     });
@@ -75,15 +75,15 @@ function constructKeyStatsObj(obj) {
   const keyStats = {
     symbol: obj.symbol,
     name: obj.companyName,
-    marketCap: numeral(obj.marketcap).format('$0,0'),
-    yearHigh: numeral(obj.week52high).format('$0,0'),
-    yearLow: numeral(obj.week52low).format('$0,0'),
-    yearChange: obj.week52change,
-    dividendYield: obj.dividendYield,
-    revenue: numeral(obj.revenue).format('$0,0'),
-    debt: numeral(obj.debt).format('$0,0'),
-    cash: numeral(obj.cash).format('$0,0'),
-    grossProfit: numeral(obj.grossProfit).format('$0,0'),
+    marketCap: numeral(obj.marketcap).format('($ 0.00 a)'),
+    yearHigh: numeral(obj.week52high).format('$0,0.00'),
+    yearLow: numeral(obj.week52low).format('$0,0.00'),
+    yearChange: numeral(obj.week52change).format('(0.000 %)'),
+    dividendYield: numeral(obj.dividendYield).format('(0.000 %)'),
+    revenue: numeral(obj.revenue).format('($ 0.00 a)'),
+    debt: numeral(obj.debt).format('($ 0.00 a)'),
+    cash: numeral(obj.cash).format('($ 0.00 a)'),
+    grossProfit: numeral(obj.grossProfit).format('($ 0.00 a)'),
   };
   return keyStats;
 }

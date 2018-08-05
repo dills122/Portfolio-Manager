@@ -14,6 +14,7 @@
 									<span>Symbol: </span>
 									<span>{{item.symbol}}</span>
 								</li>
+								<li>
 									<span>Market Cap: </span>
 									<span>{{item.marketCap}}</span>
 								</li>
@@ -25,14 +26,14 @@
 									<span>52 Week Low: </span>
 									<span>{{item.yearLow}}</span>
 								</li>
-							</ul>
-						</div>
-						<div class="col-md-6 col-lg-6 col-sm-6">
-							<ul class="stats-info">
 								<li>
 									<span>52 Week Change: </span>
 									<span>{{item.yearChange}}</span>
 								</li>
+							</ul>
+						</div>
+						<div class="col-md-6 col-lg-6 col-sm-6">
+							<ul class="stats-info">
 								<li>
 									<span>Dividend Yield: </span>
 									<span>{{item.dividendYield}}</span>
@@ -63,11 +64,27 @@
 </template>
 <style type="text/css" lang="scss">
 	.tab-container {
-		color: #FFF;
+		color: $font-color;
 
 	}
 	.stats-info {
 		font-size: .85em;
+
+		> li {
+			margin: .15em 0;
+			padding: 0 .15em;
+		}
+
+		> li:hover {
+			background-color: #FFF;
+			color: #000;
+			border-radius: .15em;
+		}
+
+		> li > span:nth-child(1) {
+			font-weight: 700;
+		}
+
 	}
 </style>
 <script type="text/javascript">

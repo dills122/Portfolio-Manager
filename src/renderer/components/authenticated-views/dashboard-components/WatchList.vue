@@ -11,16 +11,16 @@
               <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 {{sym.symbol}}
               </div>
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 change-area" >
                 <div>{{sym['recent-close']}}</div>
                 <div>
-                  <span v-if="sym.change > 0">
+                  <span v-if="sym.change.indexOf('(') === -1" class="plus">
                     {{sym.change}} &nbsp;
-                    <i class="icon ion-arrow-up-b up"></i>
+<!--                     <i class="icon ion-arrow-up-b up"></i> -->
                   </span>
-                  <span v-else>
+                  <span class="minus" v-else>
                     {{sym.change}} &nbsp;
-                    <i class="icon ion-arrow-down-b down"></i>
+<!--                     <i class="icon ion-arrow-down-b down"></i> -->
                   </span>
                 </div>
               </div>
@@ -59,6 +59,28 @@
   }
   .watch-list-area {
     margin-top: .5em;
+    color: $font-color;
+
+  }
+  .change-area {
+
+    > div:nth-child(1) {
+      font-size: .9em;
+    }
+
+    > div:nth-child(2) {
+      font-size: .75em;
+      text-align: right;
+      margin-right: 1em;
+    }
+  }
+  .plus {
+    color: #000;
+    font-weight: 700;
+  }
+  .minus {
+    color: #AAAAAA;
+    font-weight: 700;
   }
     .watch-list-area::-webkit-scrollbar {
     width: .15em;
