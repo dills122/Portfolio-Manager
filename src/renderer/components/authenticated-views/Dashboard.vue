@@ -7,9 +7,13 @@
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 center-content">
-			<stock-details></stock-details>
-			<search-stock></search-stock>
-			<top-lists></top-lists>
+			<vue-scrollbar class="center-container" ref="Scrollbar">
+				<div>
+					<stock-details></stock-details>
+					<search-stock></search-stock>
+					<top-lists></top-lists>
+				</div>
+			</vue-scrollbar>
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 right-bar">
 			<watch-list></watch-list>
@@ -25,6 +29,13 @@
 	.center-content {
 		background-color: $back-color;
 		min-height: 100vh;
+	}
+	.center-container {
+		width: 100%;
+    	margin: 0 auto;
+    	max-height: 100vh;
+    	min-width: 50px;
+    	background-color: $back-color;
 	}
 	.right-bar {
 		background-color: $middle-color;
@@ -45,6 +56,7 @@
 	import WatchlistInfo from './dashboard-components/WatchListDetails';
 	import SearchStock from './dashboard-components/SearchStock';
 	import TopLists from './dashboard-components/TopListArea';
+	import VueScrollbar from 'vue2-scrollbar';
 
 	export default {
 	  data() {
@@ -60,6 +72,7 @@
 	    'stock-details': WatchlistInfo,
 	    'search-stock': SearchStock,
 	    'top-lists': TopLists,
+	    VueScrollbar,
 	  },
 	};
 </script>
