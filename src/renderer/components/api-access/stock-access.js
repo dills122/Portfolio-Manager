@@ -6,12 +6,36 @@ function GetAPIStr(SYM, type) {
     url = `https://api.iextrading.com/1.0/stock/${SYM}/chart`;
   } else if (type === 2) {
     url = `https://api.iextrading.com/1.0/stock/${SYM}/stats`;
+  } else if (type.toString().indexOf('3') > -1) {
+    url = listType('https://api.iextrading.com/1.0/stock/', type.toString().replace('3', ''));
   } else {
     url = `https://api.iextrading.com/1.0/stock/${SYM}/chart/1d`;
   }
 
   return url;
 }
+function listType(url, listType) {
+    if(listType === '1') {
+      return url + 'market/list/gainers';
+    } else {
+      return url + 'market/list/losers';
+    }
+}
+
+function retrieveListInfo(listType) {
+  return new Promise((resolve,reject) => {
+    fetch(GetAPIStr(null, listType))
+      .then(resp => resp.json())
+      .then((data) => {
+        if(data === null) {
+          reject();
+        } else {
+          resolve(data);
+        }
+      });
+  });
+}
+
 function retrieveStockInfo(symbol) {
   return new Promise((resolve, reject) => {
     fetch(GetAPIStr(symbol, 1))
@@ -35,7 +59,7 @@ function retrieveKeyStatsInfo(symbol) {
         if (data === null) {
           reject();
         } else {
-          console.log(`Data Api Recieved${data}`);
+          //console.log(`Data Api Recieved${data}`);
           resolve(data);
         }
       });
@@ -64,11 +88,36 @@ function getKeyStatsInfo(symbol) {
   });
 }
 
+function getListInfo(listType) {
+  let listObjects = [];
+  return new Promise((resolve, reject) => {
+    retrieveListInfo(listType).then((value) => {
+      if(value !== null) {
+        value.forEach((element) => {
+          listObjects.push(constructListObj(element));
+        });
+        resolve(listObjects);
+      } else {
+       reject(); 
+      }
+    });
+  });
+}
+
 function getStockInfo(symbol, type) {
   if (type === 'watchlist') {
     return getWatchlistInfo(symbol);
   }
   return null;
+}
+
+function constructListObj(obj) {
+  const listItem = {
+    symbol: obj.symbol,
+    name: obj.companyName,
+    ytd: numeral(obj.ytdChange).format('0.00 %'),
+  };
+  return listItem;
 }
 
 function constructKeyStatsObj(obj) {
@@ -88,4 +137,4 @@ function constructKeyStatsObj(obj) {
   return keyStats;
 }
 
-export { getStockInfo, getKeyStatsInfo };
+export { getStockInfo, getKeyStatsInfo, getListInfo };

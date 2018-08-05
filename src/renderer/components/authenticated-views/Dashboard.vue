@@ -9,6 +9,7 @@
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 center-content">
 			<stock-details></stock-details>
 			<search-stock></search-stock>
+			<top-lists></top-lists>
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 right-bar">
 			<watch-list></watch-list>
@@ -43,6 +44,7 @@
 	import Ticker from './dashboard-components/Ticker';
 	import WatchlistInfo from './dashboard-components/WatchListDetails';
 	import SearchStock from './dashboard-components/SearchStock';
+	import TopLists from './dashboard-components/TopListArea';
 
 	export default {
 	  data() {
@@ -57,6 +59,7 @@
 	    'stock-ticker': Ticker,
 	    'stock-details': WatchlistInfo,
 	    'search-stock': SearchStock,
+	    'top-lists': TopLists,
 	  },
 	};
 </script>
