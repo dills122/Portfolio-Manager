@@ -3,7 +3,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 tab-container">
 			<n3-tabs>
 				<n3-tab v-for="item in stocks" :header="item.symbol" :pill="true">
-					<div class="row">
+					<div class="row tab-content">
 						<div class="col-md-6 col-lg-6 col-sm-6">
 							<ul class="stats-info">
 								<li>
@@ -65,7 +65,11 @@
 <style type="text/css" lang="scss">
 	.tab-container {
 		color: $font-color;
-
+	}
+	.tab-content {
+		background-color: $middle-color;
+		border-radius: .25em;
+		margin: 0 .25em;
 	}
 	.stats-info {
 		font-size: .85em;

@@ -107,7 +107,8 @@ export default {
       showSnackbar: false,
       uid: 100,
     };
-  },components: { VueScrollbar },
+  },
+  components: { VueScrollbar },
   created() {
   	this.fillWatchlist();
   },
