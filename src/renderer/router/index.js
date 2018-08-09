@@ -38,8 +38,8 @@ const router = new Router({
       component: NewUser,
     },
     {
-      path: '/forget',
-      name: 'forget',
+      path: '/forgot',
+      name: 'forgot',
       component: ForgetPass,
     },
   ],
