@@ -3,7 +3,7 @@
 		<div id="inner-tick" v-bind:class="['animated',{ 'fadeOutDown' : isLeaving }, { 'fadeInDown' : isReturning }]">
 			<div v-if="currObj" class="split-container">
 				<div class="left">{{currObj.symbol}} </div>
-				<div class="right">${{currObj['recent-close']}} </div>
+				<div class="right">{{currObj['recent-close']}} </div>
 			</div>
 			<div v-else>
 				<div>Ticker Loading</div>
