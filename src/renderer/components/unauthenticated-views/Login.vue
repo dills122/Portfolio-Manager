@@ -8,7 +8,7 @@
 				<n3-input v-model="email" ref="email" show-clean placeholder="Email" width="99%" ></n3-input>
 			</div>
 			<div class="text-input">
-				<n3-input v-model="password" ref="password" type="password" show-clean placeholder="Password" width="99%" ></n3-input>
+				<n3-input v-model="password" ref="password" type="password" show-clean placeholder="Password" width="99%" @keyup.native.enter="signIn" ></n3-input>
 				<div>
 					<router-link v-bind:to="{ name: 'forgot-pass' }">Forgot Password</router-link>
 				</div>
@@ -18,7 +18,18 @@
 		<div class="new-user">
 			<router-link v-bind:to="{ name: 'new' }">New Here?</router-link>
 		</div>
-	</div>
+		<n3-alert
+		ref="wAlert"
+		:duration="3000"
+		type="danger"
+		placement="top"
+		message="Warning"
+		description
+		dismissable>
+		<strong>Heads up!</strong>
+		<p>Incorrect Username or Password.</p>
+	</n3-alert>
+</div>
 </template>
 
 <style type="text/css" lang="scss">
@@ -83,7 +94,7 @@
 </style>
 
 <script type="text/javascript">
-// import firebase from 'firebase';
+import firebase from 'firebase';
 import Router from '../../router';
 
 export default {
@@ -98,13 +109,11 @@ export default {
     signIn() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          // alert('Well Done')
           console.log('Authed');
-          // initialize.initializeApp();
-          Router.push('/dashboard');
+          Router.push('/dash');
         },
         (err) => {
-          alert('Oppps failed');
+          this.$refs.wAlert.open();
         },
       );
     },

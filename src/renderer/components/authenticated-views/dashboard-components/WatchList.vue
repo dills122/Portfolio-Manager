@@ -121,7 +121,7 @@ export default {
   					this.addItemToWatchlist(value.symbol);
   				}
   				this.newStock = '';
-  				//console.log(this.Symbols);
+  				// console.log(this.Symbols);
   			} else {
   				// this.$refs.wAlert.open();
     			this.newStock = '';
@@ -130,7 +130,7 @@ export default {
   	},
   	fillWatchlist() {
   		retrieveWatchlist(this.uid).then((value) => {
-  			//console.log(value);
+  			// console.log(value);
   			value.forEach((element) => {
   				this.addSymbol(element.symbol, false);
   			});
@@ -143,7 +143,7 @@ export default {
   		};
   		addWatchlistItem(obj).then((value) => {
   			if (value !== null) {
-  				//console.log(`${symbol} Successfully added`);
+  				// console.log(`${symbol} Successfully added`);
   			}
   		});
   	},

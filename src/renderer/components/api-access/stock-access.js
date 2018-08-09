@@ -15,19 +15,18 @@ function GetAPIStr(SYM, type) {
   return url;
 }
 function listType(url, listType) {
-    if(listType === '1') {
-      return url + 'market/list/gainers';
-    } else {
-      return url + 'market/list/losers';
-    }
+  if (listType === '1') {
+    return `${url}market/list/gainers`;
+  }
+  return `${url}market/list/losers`;
 }
 
 function retrieveListInfo(listType) {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     fetch(GetAPIStr(null, listType))
       .then(resp => resp.json())
       .then((data) => {
-        if(data === null) {
+        if (data === null) {
           reject();
         } else {
           resolve(data);
@@ -59,7 +58,7 @@ function retrieveKeyStatsInfo(symbol) {
         if (data === null) {
           reject();
         } else {
-          //console.log(`Data Api Recieved${data}`);
+          // console.log(`Data Api Recieved${data}`);
           resolve(data);
         }
       });
@@ -89,16 +88,16 @@ function getKeyStatsInfo(symbol) {
 }
 
 function getListInfo(listType) {
-  let listObjects = [];
+  const listObjects = [];
   return new Promise((resolve, reject) => {
     retrieveListInfo(listType).then((value) => {
-      if(value !== null) {
+      if (value !== null) {
         value.forEach((element) => {
           listObjects.push(constructListObj(element));
         });
         resolve(listObjects);
       } else {
-       reject(); 
+        reject();
       }
     });
   });

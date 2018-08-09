@@ -61,45 +61,45 @@
 
 <script type="text/javascript">
 import { getListInfo } from '../../api-access/stock-access.js';
-	export default {
-		data() {
-			return {
-				topGainers: [],
-				topLosers: [],
-				hover: false,
-			};
-		},
-		created() {
-			this.getTopGainers();
-			this.getTopLosers().then((value) => {
+export default {
+  data() {
+    return {
+      topGainers: [],
+      topLosers: [],
+      hover: false,
+    };
+  },
+  created() {
+    this.getTopGainers();
+    this.getTopLosers().then((value) => {
 
-			});
-		},
-		methods: {
-			getTopGainers() {
-				return new Promise((resolve, reject) => {
-					getListInfo(31).then((value) => {
-						if(value !== null) {
-							this.topGainers = value;
-							resolve(true);
-						} else {
-							reject();
-						}
-					});
-				});
-			},
-			getTopLosers() {
-				return new Promise((resolve, reject) => {
-					getListInfo(32).then((value) => {
-						if(value !== null) {
-							this.topLosers = value;
-							resolve(true);
-						} else {
-							reject();
-						}
-					});
-				});
-			},
-		},
-	};
+    });
+  },
+  methods: {
+    getTopGainers() {
+      return new Promise((resolve, reject) => {
+        getListInfo(31).then((value) => {
+          if (value !== null) {
+            this.topGainers = value;
+            resolve(true);
+          } else {
+            reject();
+          }
+        });
+      });
+    },
+    getTopLosers() {
+      return new Promise((resolve, reject) => {
+        getListInfo(32).then((value) => {
+          if (value !== null) {
+            this.topLosers = value;
+            resolve(true);
+          } else {
+            reject();
+          }
+        });
+      });
+    },
+  },
+};
 </script>

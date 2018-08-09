@@ -8,6 +8,8 @@ import N3Components from 'N3-components';
 import 'N3-components/dist/index.min.css';
 import numerial from 'numeral';
 import ScrollBar from 'vue2-scrollbar';
+import firebase from 'firebase';
+import config from './firebaseConfig';
 import 'vue2-scrollbar/dist/style/vue2-scrollbar.css';
 
 import App from './App';
@@ -26,6 +28,7 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'));
 Vue.http = Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
+firebase.initializeApp(config);
 
 Vue.prototype.$watchList = watchlistDb;
 Vue.prototype.$portfolio = portfolioDb;

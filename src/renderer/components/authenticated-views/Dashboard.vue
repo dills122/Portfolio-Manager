@@ -2,9 +2,7 @@
 	<div class="row dashboard-container">
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 left-bar">
 			<stock-ticker></stock-ticker>
-			<div>
-				<router-link v-bind:to="{ name: 'login' }">Login Test</router-link>
-			</div>
+			<profile></profile>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 center-content">
 			<vue-scrollbar class="center-container" ref="Scrollbar">
@@ -57,6 +55,7 @@
 	import Ticker from './dashboard-components/Ticker';
 	import WatchlistInfo from './dashboard-components/WatchListDetails';
 	import SearchStock from './dashboard-components/SearchStock';
+	import Profile from './dashboard-components/Profile';
 	import TopLists from './dashboard-components/TopListArea';
 	import VueScrollbar from 'vue2-scrollbar';
 
@@ -74,6 +73,7 @@
 	    'stock-details': WatchlistInfo,
 	    'search-stock': SearchStock,
 	    'top-lists': TopLists,
+	    'profile': Profile,
 	    VueScrollbar,
 	  },
 	};
