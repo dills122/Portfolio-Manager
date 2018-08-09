@@ -1,49 +1,49 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import firebase from 'firebase'
+import Vue from 'vue';
+import Router from 'vue-router';
+import firebase from 'firebase';
 
-import Dashboard from '@/components/back/Dashboard'
-import Login from '@/components/front/Login'
-import Forgot from '@/components/front/Forgot'
-import NewUser from '@/components/front/NewUser'
+import Dashboard from '@/components/authenticated-views/Dashboard';
+import Login from '@/components/unauthenticated-views/Login';
+import NewUser from '@/components/unauthenticated-views/NewUser';
+import ForgetPass from '@/components/unauthenticated-views/ForgetPassword';
 
-Vue.use(Router)
+Vue.use(Router);
 
-var router = new Router({
+const router = new Router({
   routes: [
     {
       path: '*',
-      redirect: '/login'
+      redirect: '/login',
     },
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/login',
+    },
+    {
+      path: '/dash',
+      name: 'dash',
+      component: Dashboard,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
     },
     {
-      path: '/forgot',
-      name: 'forgot-pass',
-      component: Forgot
+      path: '/new',
+      name: 'new',
+      component: NewUser,
     },
     {
-      path: '/newuser',
-      name: 'new-user',
-      component: NewUser
+      path: '/forget',
+      name: 'forget',
+      component: ForgetPass,
     },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard,
-      meta: {
-        requiresAuth: true
-      }
-    }
-  ]
-})
+  ],
+});
 
 // http://router.vuejs.org/en/advanced/meta.html
 router.beforeEach((to, from, next) => {
@@ -64,4 +64,4 @@ router.beforeEach((to, from, next) => {
 });
 
 
-export default router
+export default router;
