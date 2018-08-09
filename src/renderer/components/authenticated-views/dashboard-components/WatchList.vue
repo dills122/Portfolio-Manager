@@ -100,6 +100,7 @@ import { getStockInfo } from '../../api-access/stock-access.js';
 import { retrieveWatchlist, addWatchlistItem } from '../../data-access/watchlist-access.js';
 import VueScrollbar from 'vue2-scrollbar';
 export default {
+  name: 'WatchList',
   data() {
     return {
       newStock: null,
