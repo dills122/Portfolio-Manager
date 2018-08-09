@@ -10,7 +10,7 @@
 			<div class="text-input">
 				<n3-input v-model="password" ref="password" type="password" show-clean placeholder="Password" width="99%" @keyup.native.enter="signIn" ></n3-input>
 				<div>
-					<router-link v-bind:to="{ name: 'forgot-pass' }">Forgot Password</router-link>
+					<router-link v-bind:to="{ name: 'forgot' }">Forgot Password</router-link>
 				</div>
 			</div>
 			<n3-button type="primary" @click.native="signIn">Login</n3-button>
