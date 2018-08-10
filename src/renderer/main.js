@@ -9,6 +9,7 @@ import 'N3-components/dist/index.min.css';
 import numerial from 'numeral';
 import ScrollBar from 'vue2-scrollbar';
 import firebase from 'firebase';
+import Vuex from 'vuex';
 import config from './firebaseConfig';
 import 'vue2-scrollbar/dist/style/vue2-scrollbar.css';
 
@@ -18,6 +19,7 @@ import router from './router';
 // install N3
 Vue.use(N3Components);
 Vue.use(ScrollBar);
+Vue.use(Vuex);
 
 // for English  (default chinese)
 // version 2.2.0 or later
