@@ -12,6 +12,7 @@ import firebase from 'firebase';
 import Vuex from 'vuex';
 import config from './firebaseConfig';
 import 'vue2-scrollbar/dist/style/vue2-scrollbar.css';
+import {store} from './store/store';
 
 import App from './App';
 import router from './router';
@@ -39,5 +40,6 @@ Vue.prototype.$portfolio = portfolioDb;
 new Vue({
   components: { App },
   router,
+  store: store,
   template: '<App/>',
 }).$mount('#app');

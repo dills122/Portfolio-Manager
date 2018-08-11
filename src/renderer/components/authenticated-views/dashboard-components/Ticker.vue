@@ -111,7 +111,9 @@
 <script type="text/javascript">
 import { getStockInfo } from '../../api-access/stock-access.js';
 import { retrieveWatchlist, addWatchlistItem } from '../../data-access/watchlist-access.js';
+import {store} from '../../../store/store';
 export default {
+  store: store,
   data() {
     return {
       objArry: [],

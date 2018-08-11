@@ -99,8 +99,10 @@
 import { getStockInfo } from '../../api-access/stock-access.js';
 import { retrieveWatchlist, addWatchlistItem } from '../../data-access/watchlist-access.js';
 import VueScrollbar from 'vue2-scrollbar';
+import {store} from '../../../store/store';
 export default {
   name: 'WatchList',
+  store: store,
   data() {
     return {
       newStock: null,
@@ -135,6 +137,7 @@ export default {
   			value.forEach((element) => {
   				this.addSymbol(element.symbol, false);
   			});
+        this.$store.commit('updateWatchlist', this.Symbols);
   		});
   	},
   	addItemToWatchlist(symbol) {
@@ -145,6 +148,7 @@ export default {
   		addWatchlistItem(obj).then((value) => {
   			if (value !== null) {
   				// console.log(`${symbol} Successfully added`);
+          this.$store.commit('updateWatchlist', this.Symbols)
   			}
   		});
   	},
